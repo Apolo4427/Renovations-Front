@@ -8,13 +8,12 @@ import { Observable } from 'rxjs';
 })
 export class ApiServiceClientesService {
 
-  private Htt_ = inject(HttpClient);
+  private _Http = inject(HttpClient);
 
   private urlBase:string = 'https://fakestoreapi.com/products';
 
   getClientes():Observable<Product[]>{
-    return this.Htt_.get<Product[]>(this.urlBase);
+    return this._Http.get<Product[]>(this.urlBase);
   }
 
-  constructor() { }
 }

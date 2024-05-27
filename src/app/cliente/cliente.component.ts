@@ -12,11 +12,12 @@ import { ApiServiceClientesService } from '../Services/api-service-clientes.serv
 export class ClienteComponent implements OnInit {
   
 
-  clienteLinst:Product[]=[];
+  clienteList:Product[]=[];
 
   private _clienteService = inject(ApiServiceClientesService);
 
   ngOnInit(): void {
-    this._clienteService.getClientes().subscribe((data:Product[])=>this.clienteLinst=data);
+    this._clienteService.getClientes().subscribe((data:Product[])=>this.clienteList=data);
+    console.log(this.clienteList);
   }
 }

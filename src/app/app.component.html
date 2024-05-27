@@ -1,5 +1,24 @@
-<div>
-  <button type="button" class="btn btn-primary">BOTON</button>
+<div class="general-styles">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Renovations JRL</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="" [ngClass]="{active: menuOption == 'clientes'}" (click)="onOption('home')">Clientes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="proyectos" [ngClass]="{active: menuOption == 'proyectos'}" (click)="onOption('products')">Proyectoss</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="registrar" [ngClass]="{active: menuOption == 'registrar'}" (click)="onOption('contact')">Registrar nuevo cliente</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <router-outlet />
 </div>
-
-<router-outlet />
