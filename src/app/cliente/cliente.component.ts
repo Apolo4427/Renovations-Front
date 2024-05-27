@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Product } from '../models/Product.model';
+import { Cliente } from '../models/Cliente.model';
 import { ApiServiceClientesService } from '../Services/api-service-clientes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cliente',
@@ -11,13 +12,17 @@ import { ApiServiceClientesService } from '../Services/api-service-clientes.serv
 })
 export class ClienteComponent implements OnInit {
   
-
-  clienteList:Product[]=[];
+  clienteList:Cliente[]=[];
 
   private _clienteService = inject(ApiServiceClientesService);
+  private _router = inject(Router);
 
   ngOnInit(): void {
-    this._clienteService.getClientes().subscribe((data:Product[])=>this.clienteList=data);
+    this._clienteService.getClientes().subscribe((data:Cliente[])=>this.clienteList=data);
     console.log(this.clienteList);
+  }
+
+  onDetail(id:number):void{
+    this._router.navigate(['cleinte',id]);
   }
 }
