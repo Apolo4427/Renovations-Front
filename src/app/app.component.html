@@ -11,7 +11,7 @@
             <a class="nav-link" routerLink="" [ngClass]="{active: menuOption == 'clientes'}" (click)="onOption('home')">Clientes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="proyectos" [ngClass]="{active: menuOption == 'proyectos'}" (click)="onOption('products')">Proyectoss</a>
+            <a class="nav-link" routerLink="proyectos" [ngClass]="{active: menuOption == 'proyectos'}" (click)="onOption('products')">Proyectos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="registrar" [ngClass]="{active: menuOption == 'registrar'}" (click)="onOption('contact')">Registrar nuevo cliente</a>
@@ -20,5 +20,8 @@
       </div>
     </div>
   </nav>
+  <div>
+    buscador...
+  </div>
   <router-outlet />
 </div>

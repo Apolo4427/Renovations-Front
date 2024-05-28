@@ -12,14 +12,14 @@ import { Router } from '@angular/router';
 })
 export class ClienteComponent implements OnInit {
   
-  clienteList:Cliente[]=[];
+  clientesList:Cliente[]=[];
 
   private _clienteService = inject(ApiServiceClientesService);
   private _router = inject(Router);
 
   ngOnInit(): void {
-    this._clienteService.getClientes().subscribe((data:Cliente[])=>this.clienteList=data);
-    console.log(this.clienteList);
+    this._clienteService.getClientes().subscribe((data:Cliente[])=>this.clientesList=data);
+    console.log(this.clientesList);
   }
 
   onDetail(id:number):void{

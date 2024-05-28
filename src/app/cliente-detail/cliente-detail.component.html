@@ -1,1 +1,43 @@
-<p>cliente-detail works!</p>
+@if (loading){
+    <h5>Cargando ...</h5>
+}
+
+@if (!loading){
+    <div class="container">
+        <div class="card" style="width: 18rem;">
+            <!-- <img src="{{cliente?.image}}" class="card-img-top" alt="{{cliente?.nombre}}"> -->
+            <div class="card-body">
+              <h5 class="card-title">{{cliente?.nombre}}</h5>
+              <h5>{{cliente?.email}}</h5>
+              <h4>{{cliente?.contacto}}</h4>
+              <p class="card-text">{{cliente?.referido_por}}</p>
+            </div>
+          </div>
+    </div>
+}
+
+<div class="container">
+    <h1>Proyectos de {{cliente.nombre}} </h1>
+    <table class="table table-dark table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Numero de contrato</th>
+                <th scope="col">Fecha de estimado</th>
+                <th scope="col">Fecha de inicio</th>
+                <th scope="col">Detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(proyecto of proyectosList; track $index){
+                <tr>
+                    <th scope="row">{{proyecto.id}}</th>
+                    <td>{{proyecto.numeroContrato}}</td>
+                    <td>{{proyecto.fecha_estimado}}</td>
+                    <td>{{proyecto.fecha_inicio}}</td>
+                    <td><button type="button" class="btn btn-outline-primary" (click)="onDetail(proyecto.id)">Detalles</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
