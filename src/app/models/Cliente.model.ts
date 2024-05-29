@@ -11,14 +11,14 @@ export interface Cliente {
 export interface ProyectosList {
     proyectoId:                number;
     numeroContrato:            string;
-    fecha_estimado:            null;
-    fecha_inicio:              null;
+    fecha_estimado:            string;
+    fecha_inicio:              string;
     imagenesAntes:             FacturasDeMarteriale[];
     contratante:               string;
     emailCliente:              string;
-    valor_aprovado:            null;
+    valor_aprovado:            string;
     listaDePagosClientes:      ListaDePagosCliente[];
-    fechaDePago_velorAprovado: null;
+    fechaDePago_velorAprovado: string;
     documentos:                Documento[];
     facturas_de_marteriales:   FacturasDeMarteriale[];
     listaDePagosAliados:       ListaDePagosAliado[];
@@ -39,17 +39,17 @@ export interface FacturasDeMarteriale {
 }
 
 export interface ListaDePagosAliado {
-    compañiaAliada:   string;
+    empresaAliada:   string;
     valorPagado:      string;
     fechaDePago:      string;
-    facturasDePagos:  null;
+    //facturasDePagos:  string;
     pagoParaAliadoId: number;
 }
 
 export interface ListaDePagosCliente {
     fecha_pago:    string;
-    metodo_pago:   null;
+    metodo_pago:   string;
     valor_pagado:  string;
-    factura:       null;
+    //factura:       string;
     pagoClienteId: number;
 }

@@ -17,7 +17,7 @@
 }
 
 <div class="container">
-    <h1>Proyectos de {{cliente.nombre}} </h1>
+    <h1>Proyectos de {{cliente?.nombre}} </h1>
     <table class="table table-dark table table-striped">
         <thead>
             <tr>
@@ -31,11 +31,11 @@
         <tbody>
             @for(proyecto of proyectosList; track $index){
                 <tr>
-                    <th scope="row">{{proyecto.id}}</th>
+                    <th scope="row">{{proyecto.proyectoId}}</th>
                     <td>{{proyecto.numeroContrato}}</td>
                     <td>{{proyecto.fecha_estimado}}</td>
                     <td>{{proyecto.fecha_inicio}}</td>
-                    <td><button type="button" class="btn btn-outline-primary" (click)="onDetail(proyecto.id)">Detalles</button></td>
+                    <td><button type="button" class="btn btn-outline-primary" (click)="onDetail(proyecto.proyectoId)">Detalles</button></td>
                 </tr>
             }
         </tbody>

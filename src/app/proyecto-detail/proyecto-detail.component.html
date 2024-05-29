@@ -1,1 +1,69 @@
-<p>proyecto-detail works!</p>
+@if (loading){
+    <h5>Cargando ...</h5>
+}
+
+@if (!loading){
+    <div class="container">
+        <div class="card" style="width: 18rem;">
+            <!-- <img src="{{cliente?.image}}" class="card-img-top" alt="{{cliente?.nombre}}"> -->
+            <div class="card-body">
+              <h5 class="card-title">{{proyecto?.numeroContrato}}</h5>
+              <h5>Valor aprovado: {{proyecto?.valor_aprovado}}</h5>
+              <h4>
+                Fecha de estimado: {{proyecto?.fecha_inicio}}
+                Fecha de inicio: {{proyecto?.fecha_inicio}}
+              </h4>
+              <p class="card-text">
+                Contratante: {{proyecto?.contratante}}
+                Email del cliente: {{proyecto?.emailCliente}}
+              </p>
+            </div>
+          </div>
+    </div>
+}
+<div class="container">
+    <h1>Pagos del cliente: </h1>
+    <table class="table table-dark table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Fecha de pago</th>
+                <th scope="col">Metodo de pago</th>
+                <th scope="col">Valor pagado</th>
+                <!-- <th scope="col">Detalles</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            @for(pagoCliente of pagosCleinte; track $index){
+                <tr>
+                    <td>{{pagoCliente.fecha_pago}}</td>
+                    <td>{{pagoCliente.metodo_pago}}</td>
+                    <td>{{pagoCliente.valor_pagado}}</td>
+                    <!-- <td><button type="button" class="btn btn-outline-primary" (click)="onDetail(pagoCliente.id)">Detalles</button></td> -->
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <h1>Pagos a compañias aliadas: </h1>
+    <table class="table table-dark table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Compañia aliada</th>
+                <th scope="col">Valor pagado</th>
+                <th scope="col">Fecha de pago</th>
+                <!-- <th scope="col">Detalles</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            @for(pagoAliado of pagosAliados; track $index){
+                <tr>
+                    <td>{{pagoAliado.empresaAliada}}yecto
+                    <td>{{pagoAliado.valorPagado}}</td>
+                    <td>{{pagoAliado.fechaDePago}}</td>
+                    <!-- <td><button type="button" class="btn btn-outline-primary" (click)="onDetail(pagoCliente.id)">Detalles</button></td> -->
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

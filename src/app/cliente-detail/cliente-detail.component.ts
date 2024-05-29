@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ApiServiceClientesService } from '../Services/api-service-clientes.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente, ProyectosList } from '../models/Cliente.model';
 import { ApisProyectosServicesService } from '../Services/apis-proyectos-services.service';
 
@@ -16,6 +16,7 @@ export class ClienteDetailComponent implements OnInit {
   private _serviceClientes = inject(ApiServiceClientesService);
   private _serviceProductos = inject(ApisProyectosServicesService);
   private _activedRoute = inject(ActivatedRoute);
+  private _router = inject(Router);
 
   public cliente?:Cliente;
   public proyectosList?:ProyectosList[];
@@ -28,8 +29,13 @@ export class ClienteDetailComponent implements OnInit {
           this.cliente = data;
           this.loading = false;
         });
+        this._serviceProductos.getProyectos(params['id']).subscribe((data:ProyectosList[])=>this.proyectosList=data);
       }
     )
-    this._serviceProductos.getProductos().subscribe((data:ProyectosList[])=>this.proyectosList=data);
+    
+  }
+
+  onDetail(id:number):void{
+    this._router.navigate(['proyecto',id]);
   }
 }
