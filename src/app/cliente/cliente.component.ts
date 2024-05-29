@@ -22,7 +22,7 @@ export class ClienteComponent implements OnInit {
     console.log(this.clientesList);
   }
 
-  onDetail(id:number):void{
-    this._router.navigate(['cleinte',id]);
+  onDetail(clienteId:number):void{
+    this._router.navigate(['cleinte',clienteId]);
   }
 }

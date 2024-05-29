@@ -35,7 +35,7 @@ export class ClienteDetailComponent implements OnInit {
     
   }
 
-  onDetail(id:number):void{
-    this._router.navigate(['proyecto',id]);
+  onDetail(proyectoId:number):void{
+    this._router.navigate(['proyecto',proyectoId]);
   }
 }

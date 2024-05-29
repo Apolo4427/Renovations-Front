@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ListaDePagosAliado, ListaDePagosCliente, ProyectosList } from '../models/Cliente.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApisProyectosServicesService } from '../Services/apis-proyectos-services.service';
 import { ApiPagosClienteServicesService } from '../Services/api-pagos-cliente-services.service';
 import { ApiPagosAliadosService } from '../Services/api-pagos-aliados.service';
@@ -17,6 +17,7 @@ export class ProyectoDetailComponent implements OnInit {
   private _serviceProyectos = inject(ApisProyectosServicesService);
   private _servicePagosClientes = inject(ApiPagosClienteServicesService);
   private _sevicePagosAliados = inject(ApiPagosAliadosService);
+  private _router = inject(Router)
 
   public proyecto?:ProyectosList;
   public pagosCleinte?:ListaDePagosCliente[];
@@ -32,5 +33,13 @@ export class ProyectoDetailComponent implements OnInit {
         this._servicePagosClientes.getPagosCliente(params['id']).subscribe((data:ListaDePagosCliente[])=>this.pagosCleinte=data);
         this._sevicePagosAliados.getPagosAliados(params['id']).subscribe((data:ListaDePagosAliado[])=>this.pagosAliados=data);
       })
+  }
+
+  onRegistrar(component:string, proyectoId:number):void{
+    this._router.navigate([component, proyectoId]);
+  }
+
+  onDocumentos(proyectoId:number):void{
+    this._router.navigate(['documentos', proyectoId]);
   }
 }
