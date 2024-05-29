@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="card text-bg-dark mb-3" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <p>Cargar todos los correos.</p>
+            <button type="button" class="btn btn-outline-primary" (click)="onAllCorreos()">Cargar</button>
+          </li>
+          <li class="list-group-item">
+            <p>Cargar correos de clientes que tienen proyectos con la empresa.</p>
+            <button type="button" class="btn btn-outline-success" (click)="onCorreosConContrato()">Cargar</button>
+          </li>
+          <li class="list-group-item">
+            <p>Cargar correos de clientes que no tienen proyectos con la empresa.</p> 
+            <button type="button" class="btn btn-outline-danger" (click)="onCorreosSinContrato()">Cargar</button>
+          </li>
+        </ul>
+    </div>
+</div>
+
+@if (correosNoCargados){
+    <div class="container">
+        <h3>Por favor indique que correos desea cargar.</h3>
+    </div>
+}
+
+@if(correosList.length == 0 && !correosNoCargados){
+    <div class="container">
+        <h3>No se encontraron correos</h3>
+    </div>  
+}
+
+@if (!correosNoCargados){
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            <button type="button" class="btn btn-primary" (click)="copiarCorreos()">Copiar Correos</button>
+        </div>
+        <ul class="list-group list-group-flush">
+            @for (correo of correosList; track $index){
+            <li class="list-group-item correo">correo</li>
+            }
+        </ul>
+    </div>
+}

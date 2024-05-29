@@ -20,4 +20,16 @@ export class ApiServiceClientesService {
     return this._Http.get<Cliente>(`${this.urlBase}/${id}`);
   }
 
+  getAllCorreosClientes():Observable<string[]>{
+    return this._Http.get<string[]>(`${this.urlBase}/emails`);
+  }
+
+  getEmailsWithOutContrato():Observable<string[]>{
+    return this._Http.get<string[]>(`${this.urlBase}/emailsWithOutContrato`);
+  }
+
+  getEmailsWithContrato():Observable<string[]>{
+    return this._Http.get<string[]>(`${this.urlBase}/emailsWithContrato`);
+  }
+
 }

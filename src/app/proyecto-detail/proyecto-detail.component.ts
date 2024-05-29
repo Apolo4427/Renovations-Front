@@ -35,11 +35,11 @@ export class ProyectoDetailComponent implements OnInit {
       })
   }
 
-  onRegistrar(component:string, proyectoId:number):void{
+  onRegistrar(component:string, proyectoId:number | undefined):void{
     this._router.navigate([component, proyectoId]);
   }
 
-  onDocumentos(proyectoId:number):void{
+  onDocumentos(proyectoId:number | undefined):void{
     this._router.navigate(['documentos', proyectoId]);
   }
 }

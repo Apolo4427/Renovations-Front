@@ -8,20 +8,23 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" routerLink="" [ngClass]="{active: menuOption == 'clientes'}" (click)="onOption('home')">Clientes</a>
+            <a class="nav-link" routerLink="cliente" [ngClass]="{active: menuOption == 'cliente'}" (click)="onOption('cliente')">Clientes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="proyectos" [ngClass]="{active: menuOption == 'proyectos'}" (click)="onOption('products')">Proyectos</a>
+            <a class="nav-link" routerLink="proyectos" [ngClass]="{active: menuOption == 'proyectos'}" (click)="onOption('proyectos')">Proyectos</a>
           </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" routerLink="registrar" [ngClass]="{active: menuOption == 'registrar'}" (click)="onOption('registrar')">Registrar nuevo cliente</a>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link" routerLink="registrar" [ngClass]="{active: menuOption == 'registrar'}" (click)="onOption('contact')">Registrar nuevo cliente</a>
+            <a class="nav-link" routerLink="correos" [ngClass]="{active: menuOption == 'correos'}" (click)="onOption('correos')">Obtener correos</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <div>
-    buscador...
+    agregar buscador...
   </div>
   <router-outlet />
 </div>
