@@ -32,4 +32,16 @@ export class ApiServiceClientesService {
     return this._Http.get<string[]>(`${this.urlBase}/emailsWithContrato`);
   }
 
+  crearCliente(cliente:Cliente){
+    return this._Http.post(`${this.urlBase}/registrar`,cliente);
+  }
+
+  actualizarCliente(cliente:Cliente, id:number){
+    return this._Http.put(`${this.urlBase}/actualizar/${id}`,cliente);
+  }
+
+  eliminarCliente(id:number){
+    return this._Http.delete(`${this.urlBase}/eliminar/${id}`);
+  }
+
 }
