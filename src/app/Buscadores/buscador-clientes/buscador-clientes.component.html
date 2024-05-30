@@ -1,0 +1,13 @@
+<div class="container">
+    <input type="text" (input)="onInput($event)" placeholder="Buscar Cliente por su nombre o email...">
+    <ul>
+      @for (cliente of filteredClientes(); track $index) {
+        <li>
+            <p>{{cliente.nombre}} </p>
+            <button type="button" class="btn btn-outline-primary" (click)="onDetail(cliente.id)">Detalles</button>
+        </li>
+      } @empty {
+        <li>No se encontraron resultados.</li>
+      }
+    </ul>
+</div>

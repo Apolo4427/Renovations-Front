@@ -1,0 +1,13 @@
+<div class="container">
+    <input type="text" (input)="onInput($event)" placeholder="Buscar Proyecto por su numero de contrato...">
+    <ul>
+      @for (proyecto of filteredProyectos(); track $index) {
+        <li>
+            <p>Numero de contrato: {{proyecto.numeroContrato}} </p> 
+            <button type="button" class="btn btn-outline-primary" (click)="onDetail(proyecto.proyectoId)">Detalles</button>
+        </li>
+      } @empty {
+        <li>No se encontraron resultados.</li>
+      }
+    </ul>
+</div>
