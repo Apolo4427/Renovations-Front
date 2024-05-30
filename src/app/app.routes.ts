@@ -7,10 +7,14 @@ import { PagoAliadoComponent } from './Registrar/pago-aliado/pago-aliado.compone
 import { RegistrarPagoClienteComponent } from './Registrar/registrar-pago-cliente/registrar-pago-cliente.component';
 import { DocumentosComponent } from './documentos/documentos.component';
 import { CorreosComponent } from './correos/correos.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
     {
-        path:'', component: ClienteComponent
+        path:'', component: HomeComponent
+    },
+    {
+        path:'cliente', component: ClienteComponent
     },
     {
         path:'cliente/:clienteId',component: ClienteDetailComponent
