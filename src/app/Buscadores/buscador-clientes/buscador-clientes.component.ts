@@ -36,6 +36,10 @@ export class BuscadorClientesComponent implements OnInit{
     this.searchTerm.set(input.value);
   }
 
+  isSearchNonEmpty() {
+    return this.searchTerm().trim() !== '';
+  }
+
   onDetail(clienteId:number):void{
     this._router.navigate(['cleinte',clienteId]);
   }

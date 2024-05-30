@@ -34,6 +34,10 @@ export class BuscadorProyectosComponent implements OnInit{
     )
   );
 
+  isSearchNonEmpty() {
+    return this.searchTerm().trim() !== '';
+  }
+
   onInput(event: Event) {
     const input = event.target as HTMLInputElement;
     this.searchTerm.set(input.value);
