@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { BuscadorClientesComponent } from './Buscadores/buscador-clientes/buscador-clientes.component';
 
 @Component({
@@ -12,6 +12,7 @@ import { BuscadorClientesComponent } from './Buscadores/buscador-clientes/buscad
 })
 export class AppComponent {
   title = 'RenovationsJRL';
+  //private _activatedRouter = inject(ActivatedRoute);
 
   menuOption:string='';
 
@@ -19,4 +20,5 @@ export class AppComponent {
     this.menuOption = option;
   }
 
+  
 }

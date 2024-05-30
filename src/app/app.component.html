@@ -1,12 +1,12 @@
 <div class="general-styles">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" style="width: 100%;">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Renovations JRL</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" style="width: 100%;">
           <li class="nav-item">
             <a class="nav-link" routerLink="" [ngClass]="{active: menuOption == 'home'}" (click)="onOption('home')">Home</a>
           </li>
@@ -19,12 +19,17 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="correos" [ngClass]="{active: menuOption == 'correos'}" (click)="onOption('correos')">Obtener correos</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="registrarCliente" [ngClass]="{active: menuOption == 'registrarCliente'}" (click)="onOption('registrarCliente')">Registrar Cliente</a>
+          </li>
+          <form class="d-flex container end-0" role="search" style="max-width: 40rem;">
+            <div class="container">
+              <app-buscador-clientes></app-buscador-clientes>
+            </div>
+          </form>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="container">
-    <app-buscador-clientes></app-buscador-clientes>
-  </div>
   <router-outlet />
 </div>
