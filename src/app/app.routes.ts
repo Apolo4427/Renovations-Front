@@ -9,6 +9,7 @@ import { DocumentosComponent } from './documentos/documentos.component';
 import { CorreosComponent } from './correos/correos.component';
 import { HomeComponent } from './home/home.component';
 import { RegistrarClienteComponent } from './Registrar/registrar-cliente/registrar-cliente.component';
+import { RegistrarProyectoComponent } from './Registrar/registrar-proyecto/registrar-proyecto.component';
 
 export const routes: Routes = [
     {
@@ -31,6 +32,9 @@ export const routes: Routes = [
     },
     {
         path:'registrarCliente', component: RegistrarClienteComponent
+    },
+    {
+        path:'registrarProyecto', component: RegistrarProyectoComponent
     },
     // {
     //     editar cliente y proyecto

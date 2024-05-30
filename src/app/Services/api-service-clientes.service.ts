@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class ApiServiceClientesService {
 
+  public clienteEmail?:string;
+
   private _Http = inject(HttpClient);
 
   private urlBase:string = 'https://localhost:8080/clientes';

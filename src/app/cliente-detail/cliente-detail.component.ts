@@ -1,9 +1,10 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Injectable, OnInit, inject } from '@angular/core';
 import { ApiServiceClientesService } from '../Services/api-service-clientes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente, ProyectosList } from '../models/Cliente.model';
 import { ApisProyectosServicesService } from '../Services/apis-proyectos-services.service';
 import { BuscadorProyectosComponent } from '../Buscadores/buscador-proyectos/buscador-proyectos.component';
+import { ClienteService } from '../cliente-prueba.service';
 
 @Component({
   selector: 'app-cliente-detail',
@@ -14,10 +15,11 @@ import { BuscadorProyectosComponent } from '../Buscadores/buscador-proyectos/bus
 })
 export class ClienteDetailComponent implements OnInit {
 
-  private _serviceClientes = inject(ApiServiceClientesService);
+  //private _serviceClientes = inject(ApiServiceClientesService);
   private _serviceProductos = inject(ApisProyectosServicesService);
-  private _activedRoute = inject(ActivatedRoute);
+  //private _activedRoute = inject(ActivatedRoute);
   private _router = inject(Router);
+  private _clientePrueba = inject(ClienteService);
 
   public cliente?:Cliente;
   clienteId?:number;
@@ -25,20 +27,27 @@ export class ClienteDetailComponent implements OnInit {
   loading:boolean=true;
 
   ngOnInit(): void {
-    this._activedRoute.params.subscribe(
-      params=>{
-        this._serviceClientes.getCliente(params['id']).subscribe((data:Cliente)=>{
-          this.cliente = data;
-          this.loading = false;
-        });
-        this._serviceProductos.getProyectos(params['id']).subscribe((data:ProyectosList[])=>this.proyectosList=data);
-        this.clienteId=params['id'];
-      }
-    )
-    
+    // this._activedRoute.params.subscribe(
+    //   params=>{
+    //     this._serviceClientes.getCliente(params['id']).subscribe((data:Cliente)=>{
+    //       this.cliente = data;
+    //       this.loading = false;
+    //     });
+    //     this._serviceProductos.getProyectos(params['id']).subscribe((data:ProyectosList[])=>this.proyectosList=data);
+    //     this.clienteId=params['id'];
+    //   }
+    // )
+    this.cliente=this._clientePrueba.getCliente();
+    this.loading = false;
+    this.proyectosList=this._clientePrueba.getProyecto();
   }
 
   onDetail(proyectoId:number):void{
     this._router.navigate(['proyecto',proyectoId]);
+  }
+
+  onNuevoProyecto(clienteEmail:string | undefined):void{
+   // this._serviceClientes.clienteEmail=clienteEmail;
+    this._router.navigate(['registrarProyecto']);
   }
 }

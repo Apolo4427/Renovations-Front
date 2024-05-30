@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ApiServiceClientesService } from '../../Services/api-service-clientes.service';
 
 @Component({
   selector: 'app-registrar-proyecto',
@@ -9,27 +10,37 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   templateUrl: './registrar-proyecto.component.html',
   styleUrl: './registrar-proyecto.component.css'
 })
-export class RegistrarProyectoComponent {
+export class RegistrarProyectoComponent implements OnInit{
 
-  clienteForm!: FormGroup;//"!" significa que nos comprometemos a que nunca sea null
+  clienteEmail?:string='';
+  proyectoForm!: FormGroup;//"!" significa que nos comprometemos a que nunca sea null
+
+  private _clienteServices = inject(ApiServiceClientesService);
 
   constructor(private fromBuilder:FormBuilder){
-    this.clienteForm = this.fromBuilder.group({
-      email:['', [Validators.required,Validators.email]],
-      nombre: ['', [Validators.required,Validators.minLength(3)]],
-      direccion: ['', [Validators.required,Validators.minLength(4)]],
-      contacto: ['', [Validators.required,Validators.minLength(10)]]
+    this.proyectoForm = this.fromBuilder.group({
+      numeroContrato:['', [Validators.required,Validators.minLength(4)]],
+      fechaEstimado: ['', [Validators.required,Validators.minLength(3)]],
+      fechaInicio: ['', [Validators.required,Validators.minLength(4)]],
+      contratante: ['', [Validators.required,Validators.minLength(10)]],
+      emailCliente: [{value: this.clienteEmail}, [Validators.required,Validators.email]],
+      valorAprovado: ['', [Validators.required,Validators.minLength(10)]],
+      fechaDePagoValorAprovado: ['', [Validators.required,Validators.minLength(10)]]
     });
   }
 
+  ngOnInit(): void {
+      this.clienteEmail = this._clienteServices.clienteEmail;
+  }
+
   hasErrors(field: string, typeError:string){
-    return this.clienteForm.get(field)?.hasError(typeError) && this.clienteForm.get(field)?.touched;
+    return this.proyectoForm.get(field)?.hasError(typeError) && this.proyectoForm.get(field)?.touched;
   }
 
   enviar(event: Event){
     event.preventDefault();
     console.log('Enviado')
-    this.clienteForm.get('email')?.setValue('');
-    this.clienteForm.get('mensaje')?.setValue('');
+    this.proyectoForm.get('email')?.setValue('');
+    this.proyectoForm.get('mensaje')?.setValue('');
   }
 }
