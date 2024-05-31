@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApisProyectosServicesService {
 
+  idProyecto?:number;
+
   private _Http = inject(HttpClient);
 
   private urlBase:string = 'https://localhost:8080/clientes';

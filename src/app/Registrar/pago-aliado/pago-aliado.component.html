@@ -1,1 +1,53 @@
-<p>pago-aliado works!</p>
+<div class="container" style="max-width: 80%;">
+    <div class="container titulo">
+        <b class="fs-3 font-monospace">Registrar un nuevo pago a una compañia aliada: </b>
+    </div>
+    <br>
+    <form [formGroup]="clienteForm" class="row g-3 needs-validation" novalidate (submit)="enviar($event)" style="width: 100%;">
+        <div class="col-md-4 position-relative">
+            <div class="mb-3">
+                <label for="exampleFormControlInput0" class="form-label">Compañia aliada: </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput0"
+                 placeholder="Nombre de la compañia aliada" 
+                 formControlName="empresaAliada"
+                 [ngClass]="{'is-invalid': hasErrors('empresaAliada','required') || hasErrors('empresaAliada','minlength')}">
+                @if(hasErrors('empresaAliada','required')){
+                    <span class="text-danger">tines que rellenar este campo</span>
+                }
+                @if(hasErrors('empresaAliada','minlength')){
+                    <span class="text-danger">El nombre de la empresa debe tener minimo 3 caracteres</span>
+                }                 
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Fecha de pago: </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput1"
+                 placeholder="Fecha de pago" 
+                 formControlName="fechaDePago"
+                 [ngClass]="{'is-invalid': hasErrors('fechaDePago','required') || hasErrors('fechaDePago','minlength')}">
+                @if(hasErrors('fechaDePago','required')){
+                    <span class="text-danger">tines que rellenar este campo</span>
+                }
+                @if(hasErrors('fechaDePago','minlength')){
+                    <span class="text-danger">La fecha debe tener minimo 3 caracteres</span>
+                }                 
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput3" class="form-label">Valor pagado: </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput3"
+                 placeholder="Valor del pago" 
+                 formControlName="valorPagado"
+                 [ngClass]="{'is-invalid': hasErrors('valorPagado','required') || hasErrors('valorPagado','minlength')}">
+                 @if(hasErrors('valorPagado','required')){
+                     <span class="text-danger">tines que rellenar este campo</span>
+                 }
+                 @if(hasErrors('valorPagado','minlength')){
+                     <span class="text-danger">El valor debe tener minimo 2 caracteres</span>
+                 }
+            </div>
+        <div class="col-12" style="margin: 20px 0px;">
+          <button class="btn btn-success" type="submit">Registrar</button>
+        </div>
+</div>

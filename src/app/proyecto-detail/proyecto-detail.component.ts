@@ -14,10 +14,10 @@ import { ClienteService } from '../cliente-prueba.service';
   styleUrl: './proyecto-detail.component.css'
 })
 export class ProyectoDetailComponent implements OnInit {
-  // private _activatedRouter = inject(ActivatedRoute);
-  // private _serviceProyectos = inject(ApisProyectosServicesService);
-  // private _servicePagosClientes = inject(ApiPagosClienteServicesService);
-  // private _sevicePagosAliados = inject(ApiPagosAliadosService);
+  private _activatedRouter = inject(ActivatedRoute);
+  private _serviceProyectos = inject(ApisProyectosServicesService);
+  private _servicePagosClientes = inject(ApiPagosClienteServicesService);
+  private _sevicePagosAliados = inject(ApiPagosAliadosService);
   private _router = inject(Router);
   private _clientePrueba = inject(ClienteService);
 
@@ -44,6 +44,7 @@ export class ProyectoDetailComponent implements OnInit {
   }
 
   onComponent(component:string, proyectoId:number | undefined):void{
+    this._serviceProyectos.idProyecto = proyectoId;
     this._router.navigate([component, proyectoId]);
   }
 }
