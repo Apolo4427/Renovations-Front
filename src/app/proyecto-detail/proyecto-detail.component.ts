@@ -40,10 +40,10 @@ export class ProyectoDetailComponent implements OnInit {
   }
 
   onRegistrar(component:string, proyectoId:number | undefined):void{
-    this._router.navigate([component, proyectoId]);
+    console.log('hacer peticion HTTP post de (documento, imagen antes o imagen despues).')
   }
 
-  onDocumentos(proyectoId:number | undefined):void{
-    this._router.navigate(['documentos', proyectoId]);
+  onComponent(component:string, proyectoId:number | undefined):void{
+    this._router.navigate([component, proyectoId]);
   }
 }

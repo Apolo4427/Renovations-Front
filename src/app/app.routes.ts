@@ -10,6 +10,8 @@ import { CorreosComponent } from './correos/correos.component';
 import { HomeComponent } from './home/home.component';
 import { RegistrarClienteComponent } from './Registrar/registrar-cliente/registrar-cliente.component';
 import { RegistrarProyectoComponent } from './Registrar/registrar-proyecto/registrar-proyecto.component';
+import { ImagenesAntesComponent } from './Galerias/imagenes-antes/imagenes-antes.component';
+import { ImagenesDespuesComponent } from './Galerias/imagenes-despues/imagenes-despues.component';
 
 export const routes: Routes = [
     {
@@ -36,8 +38,13 @@ export const routes: Routes = [
     {
         path:'registrarProyecto', component: RegistrarProyectoComponent
     },
+    {
+        path:'imagenesAntes/:proyectoId', component: ImagenesAntesComponent
+    },
+    {
+        path:'imagenesDespues/:proyectoId',component: ImagenesDespuesComponent
+    },
     // {
-    //     editar cliente y proyecto
     //     registrar cliente,documento y proyecto 
     // },
     {

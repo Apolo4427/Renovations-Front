@@ -2,6 +2,7 @@ import { Component, OnInit, computed, inject, Input, signal } from '@angular/cor
 import { ProyectosList } from '../../models/Cliente.model';
 import { ApisProyectosServicesService } from '../../Services/apis-proyectos-services.service';
 import { Router } from '@angular/router';
+import { ClienteService } from '../../cliente-prueba.service';
 
 @Component({
   selector: 'app-buscador-proyectos',
@@ -12,18 +13,21 @@ import { Router } from '@angular/router';
 })
 export class BuscadorProyectosComponent implements OnInit{
 
-  proyectosList:ProyectosList[]=[];
-  proyectosSignal = signal<ProyectosList[]>(this.proyectosList);
+  proyectosList:ProyectosList[] = [] ;
+  proyectosSignal = signal<ProyectosList[]>([]);
   @Input() clienteId?:number;
 
   private _proyectosServices = inject(ApisProyectosServicesService);
   private _router = inject(Router);
+  //private _clientePrueba = inject(ClienteService);
 
   ngOnInit(): void {
       if(this.clienteId){
         this._proyectosServices.getProyectos(this.clienteId).subscribe((data:ProyectosList[])=>{
           this.proyectosList=data;
         })
+        // this.proyectosList = this._clientePrueba.getProyecto();
+        // this.proyectosSignal = signal<ProyectosList[]>(this.proyectosList);
       }
   }
 

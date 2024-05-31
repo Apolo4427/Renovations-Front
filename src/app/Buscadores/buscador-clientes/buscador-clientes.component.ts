@@ -1,7 +1,8 @@
-import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, computed, inject, signal } from '@angular/core';
 import { Cliente } from '../../models/Cliente.model';
 import { ApiServiceClientesService } from '../../Services/api-service-clientes.service';
 import { Router } from '@angular/router';
+import { ClienteService } from '../../cliente-prueba.service';
 
 @Component({
   selector: 'app-buscador-clientes',
@@ -12,21 +13,26 @@ import { Router } from '@angular/router';
 })
 export class BuscadorClientesComponent implements OnInit{
 
-  clientesLinst:Cliente[]=[];
-  clientesSignal = signal<Cliente[]>(this.clientesLinst);
+  // @ViewChild('buscador', { static: false }) buscador!: ElementRef;
 
-  private _cliernteService = inject(ApiServiceClientesService);
+  clientesLinst:Cliente[]=[];
+  clientesSignal = signal<Cliente[]>([]);
+
+  private _render = inject(Renderer2);
+  //private _cliernteService = inject(ApiServiceClientesService);
   private _router = inject(Router);
+  private _clientePrueba = inject(ClienteService);
 
   ngOnInit(): void {
-      this._cliernteService.getClientes().subscribe((data:Cliente[])=>this.clientesLinst=data);
+  //    this._cliernteService.getClientes().subscribe((data:Cliente[])=>this.clientesLinst=data);
+      this.clientesLinst= [this._clientePrueba.getCliente()];
+      this.clientesSignal = signal<Cliente[]>(this.clientesLinst);
   }
 
   searchTerm = signal('');
   filteredClientes = computed(() =>
     this.clientesSignal().filter(cliente =>
       cliente.nombre.toLowerCase().includes(this.searchTerm().toLowerCase()) ||
-      cliente.contacto.includes(this.searchTerm()) ||
       cliente.email.toLowerCase().includes(this.searchTerm().toLowerCase())
     )
   );
@@ -41,6 +47,8 @@ export class BuscadorClientesComponent implements OnInit{
   }
 
   onDetail(clienteId:number):void{
-    this._router.navigate(['cleinte',clienteId]);
+    this.searchTerm.set('');
+    this._router.navigate(['cliente',clienteId]);
+    // this._render.setProperty(this.buscador, 'value', '');
   }
 }

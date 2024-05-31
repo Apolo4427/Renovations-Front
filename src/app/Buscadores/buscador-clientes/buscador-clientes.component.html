@@ -2,14 +2,16 @@
     <div class="input-group input-group-lg">
         <span class="input-group-text" id="inputGroup-sizing-lg">Buscar</span>
         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
-        (input)="onInput($event)" placeholder="Buscar Cliente por su nombre o email...">
+        id="buscador" (input)="onInput($event)" placeholder="Buscar Cliente por su nombre o email...">
     </div>
     @if(isSearchNonEmpty()){
         <ul class="list-group">
             @for (cliente of filteredClientes(); track $index) {
               <li class="list-group-item list-group-item-action list-group-item-dark">
-                  <p>{{cliente.nombre}} </p>
-                  <button type="button" class="btn btn-outline-primary" (click)="onDetail(cliente.id)">Detalles</button>
+                  <div class="container" style="display: flex;">
+                    <p style="margin: auto;">{{cliente.nombre}} </p>
+                    <button type="button" class="btn btn-outline-primary" (click)="onDetail(cliente.id)">Detalles</button>
+                  </div>
               </li>
             } @empty {
               <li class="list-group-item list-group-item-action list-group-item-dark">No se encontraron resultados.</li>
