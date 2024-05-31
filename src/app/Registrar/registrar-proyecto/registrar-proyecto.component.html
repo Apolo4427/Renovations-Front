@@ -1,4 +1,7 @@
-<div class="d-flex justify-content-center container" style="max-width: 80%;">
+<div class="container" style="max-width: 80%;">
+    <div class="container titulo">
+        <b class="fs-3 font-monospace">Registrar un nuevo proyecto: </b>
+    </div>
     <form [formGroup]="proyectoForm" class="row g-3 needs-validation" novalidate (submit)="enviar($event)" style="width: 100%;">
         <div class="col-md-4 position-relative">
             <div class="mb-3">
@@ -100,7 +103,7 @@
                  formControlName="fechaDePagoValorAprovado"
                  >
             </div>
-        <div class="col-12">
+        <div class="col-12" style="margin: 20px 0px;">
           <button class="btn btn-success" type="submit">Registrar</button>
         </div>
 </div>

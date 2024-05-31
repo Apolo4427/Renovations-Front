@@ -50,4 +50,14 @@ export class ClienteDetailComponent implements OnInit {
    // this._serviceClientes.clienteEmail=clienteEmail;
     this._router.navigate(['registrarProyecto']);
   }
+
+  copiarCorreo(clienteEmail:string | undefined):void{
+    if(clienteEmail){
+      navigator.clipboard.writeText(clienteEmail).then(() => {
+        alert('Correo copiado al portapapeles.');
+      }).catch(err => {
+        console.error('Error al copiar el texto: ', err);
+      });
+    }
+  }
 }

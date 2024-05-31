@@ -4,33 +4,79 @@
 
 @if (!loading){
     <div class="container">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 22rem;">
             <!-- <img src="{{cliente?.image}}" class="card-img-top" alt="{{cliente?.nombre}}"> -->
-            <div class="card-body">
-              <h5 class="card-title">Numero de contrato: {{proyecto?.numeroContrato}}</h5>
-              <h5>Valor aprovado: {{proyecto?.valor_aprovado}}</h5>
-              <h4>
-                Fecha de estimado: {{proyecto?.fecha_inicio}}
-                Fecha de inicio: {{proyecto?.fecha_inicio}}
-              </h4>
-              <button type="button" class="btn btn-primary" (click)="onDocumentos(proyecto?.proyectoId)">Ver Documentos</button>
-              <p class="card-text">
-                Contratante: {{proyecto?.contratante}}
-                Email del cliente: {{proyecto?.emailCliente}}
-              </p>
+            <div class="card-header">
+                <ul>
+                    <li class="list-group-item fs-3">
+                        <b>Numero de contrato: </b> 
+                        <br>
+                        {{proyecto?.numeroContrato}}
+                    </li>
+                </ul>
             </div>
-          </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-success">
+                    <b class="fs-4 font-monospace">Valor aprovado:</b><p class="fs-5">{{proyecto?.valor_aprovado}}</p>
+                </li>
+                <li class="list-group-item"><b>Contratante: </b> {{proyecto?.contratante}}</li>
+                <li class="list-group-item"><b>Email del cliente: </b> {{proyecto?.emailCliente}}</li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-primary" (click)="onDocumentos(proyecto?.proyectoId)">Ver Documentos</button>
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-success" (click)="onDocumentos(proyecto?.proyectoId)">
+                        Ver galeria del antes
+                    </button>
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-success" (click)="onDocumentos(proyecto?.proyectoId)">
+                        Ver galeria del despues
+                    </button>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="container">
-        <h3>Registrar nuevo documento</h3>
-        <button type="button" class="btn btn-outline-primary" (click)="onRegistrar('nuevoDocumento', proyecto?.proyectoId)">
-            Registrar
-        </button>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" class="fs-3">Guardar: </th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b class="font-monospace fs-5">Guardar nuevo documento:</b></td>
+                    <td>
+                        <button type="button" class="btn btn-outline-warning" (click)="onRegistrar('nuevoDocumento', proyecto?.proyectoId)">
+                            Guardar
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b class="font-monospace fs-5">Guardar nueva imagen del antes: </b></td>
+                    <td>
+                        <button type="button" class="btn btn-outline-warning" (click)="onRegistrar('nuevoDocumento', proyecto?.proyectoId)">
+                            Guardar
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b class="font-monospace fs-5">Guardar nueva imagen del despues: </b></td>
+                    <td>
+                        <button type="button" class="btn btn-outline-warning" (click)="onRegistrar('nuevoDocumento', proyecto?.proyectoId)">
+                            Guardar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 }
 <div class="container">
-    <h1>Pagos del cliente: </h1>
-    <h3>Registar pago del cliente: </h3>
+    <p class="fs-3">Pagos del cliente: </p>
+    <p class="fs-5">Registar pago del cliente: </p>
     <button type="button" class="btn btn-outline-primary" (click)="onRegistrar('nuevoPagoCliente', proyecto?.proyectoId)">Registrar</button>
     <table class="table table-dark table table-striped">
         <thead>
@@ -54,8 +100,8 @@
     </table>
 </div>
 <div class="container">
-    <h1>Pagos a compañias aliadas: </h1>
-    <h3>Registrar pago a compañia aliada</h3>
+    <p class="fs-3">Pagos a compañias aliadas: </p>
+    <p class="fs-5">Registrar pago a compañia aliada: </p>
     <button type="button" class="btn btn-outline-primary" (click)="onRegistrar('nuevoPagoAliado', proyecto?.proyectoId)">Registrar</button>
     <table class="table table-dark table table-striped">
         <thead>

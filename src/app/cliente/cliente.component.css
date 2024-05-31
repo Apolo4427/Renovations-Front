@@ -1,3 +1,19 @@
 .container {
     margin-top: 20px;
 }
+
+.tabla-pequeña{
+    display: table;
+}
+.tabla-grande {
+    display: none;
+}
+
+@media (min-width:720px) {
+    .tabla-pequeña{
+        display: none;
+    }
+    .tabla-grande {
+        display: table;
+    }
+}

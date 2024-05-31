@@ -1,6 +1,6 @@
 <div class="container">
     <h1 class="font-monospace">Lista de clientes: </h1>
-    <table class="table table-dark table table-striped">
+    <table class="table table-dark table table-striped tabla-grande">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -19,6 +19,24 @@
                     <td>{{cliente.direccion}}</td>
                     <td>{{cliente.contacto}}</td>
                     <td>{{cliente.email}}</td>
+                    <td><button type="button" class="btn btn-outline-primary" (click)="onDetail(cliente.id)">Detalles</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <table class="table table-dark table table-striped tabla-pequeña">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(cliente of clientesList; track $index){
+                <tr>
+                    <th scope="row">{{cliente.id}}</th>
+                    <td>{{cliente.nombre}}</td>
                     <td><button type="button" class="btn btn-outline-primary" (click)="onDetail(cliente.id)">Detalles</button></td>
                 </tr>
             }
