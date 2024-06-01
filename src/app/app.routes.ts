@@ -12,6 +12,8 @@ import { RegistrarClienteComponent } from './Registrar/registrar-cliente/registr
 import { RegistrarProyectoComponent } from './Registrar/registrar-proyecto/registrar-proyecto.component';
 import { ImagenesAntesComponent } from './Galerias/imagenes-antes/imagenes-antes.component';
 import { ImagenesDespuesComponent } from './Galerias/imagenes-despues/imagenes-despues.component';
+import { EditarProyectoComponent } from './Editar/editar-proyecto/editar-proyecto.component';
+import { EditarClienteComponent } from './Editar/editar-cliente/editar-cliente.component';
 
 export const routes: Routes = [
     {
@@ -44,9 +46,12 @@ export const routes: Routes = [
     {
         path:'imagenesDespues/:proyectoId',component: ImagenesDespuesComponent
     },
-    // {
-    //     registrar cliente,documento y proyecto 
-    // },
+    {
+        path:'editarProyecto/:proyectoId', component: EditarProyectoComponent
+    },
+    {
+        path:'editarCliente/:clienteId', component: EditarClienteComponent
+    },
     {
         path:'nuevoPagoAliado/:proyectoId', component: PagoAliadoComponent
     },

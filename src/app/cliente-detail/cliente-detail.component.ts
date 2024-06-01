@@ -51,6 +51,10 @@ export class ClienteDetailComponent implements OnInit {
     this._router.navigate(['registrarProyecto']);
   }
 
+  onComponent(component:string, clienteId:number | undefined){
+    this._router.navigate([component,clienteId]);
+  }
+
   copiarCorreo(clienteEmail:string | undefined):void{
     if(clienteEmail){
       navigator.clipboard.writeText(clienteEmail).then(() => {
