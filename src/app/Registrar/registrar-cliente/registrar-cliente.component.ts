@@ -1,6 +1,8 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ApiServiceClientesService } from '../../Services/api-service-clientes.service';
+import { Cliente } from '../../models/Cliente.model';
 
 @Component({
   selector: 'app-registrar-cliente',
@@ -12,6 +14,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class RegistrarClienteComponent {
 
   clienteForm!: FormGroup;//"!" significa que nos comprometemos a que nunca sea null
+  private _clienteServices = inject(ApiServiceClientesService);
 
   constructor(private fromBuilder:FormBuilder){
     this.clienteForm = this.fromBuilder.group({
@@ -30,7 +33,23 @@ export class RegistrarClienteComponent {
   enviar(event: Event){
     event.preventDefault();
     console.log('Enviado')
-    this.clienteForm.get('email')?.setValue('');
-    this.clienteForm.get('mensaje')?.setValue('');
+    //Registrar cliente atravez del metodo POST
+    event.preventDefault();
+    if (this.clienteForm.valid) {
+      const nuevoCliente: Cliente = this.clienteForm.value;
+      this._clienteServices.crearCliente(nuevoCliente).subscribe(
+        response => {
+          console.log('Cliente registrado:', response);
+          alert('Cliente registrado');
+        },
+        error => {
+          console.error('Error al registrar el cliente:', error);
+          // Aquí puedes manejar el error, por ejemplo, mostrar un mensaje de error
+        }
+      );
+    } else {
+      console.log('Formulario no válido');
+      // Aquí puedes manejar el caso en que el formulario no sea válido
+    }
   }
 }

@@ -17,29 +17,30 @@ export class ClienteDetailComponent implements OnInit {
 
   private _serviceClientes = inject(ApiServiceClientesService);
   private _serviceProductos = inject(ApisProyectosServicesService);
-  //private _activedRoute = inject(ActivatedRoute);
+  private _activedRoute = inject(ActivatedRoute);
   private _router = inject(Router);
-  private _clientePrueba = inject(ClienteService);
+  //private _clientePrueba = inject(ClienteService);
 
   public cliente?:Cliente;
-  clienteId?:number;
+  clienteId:number=0;
   public proyectosList?:ProyectosList[];
   loading:boolean=true;
 
   ngOnInit(): void {
-    // this._activedRoute.params.subscribe(
-    //   params=>{
-    //     this._serviceClientes.getCliente(params['id']).subscribe((data:Cliente)=>{
-    //       this.cliente = data;
-    //       this.loading = false;
-    //     });
-    //     this._serviceProductos.getProyectos(params['id']).subscribe((data:ProyectosList[])=>this.proyectosList=data);
-    //     this.clienteId=params['id'];
-    //   }
-    // )
-    this.cliente=this._clientePrueba.getCliente();
-    this.loading = false;
-    this.proyectosList=this._clientePrueba.getProyecto();
+    this._activedRoute.params.subscribe(
+      params=>{
+        this.clienteId=+params['clienteId'];
+        console.log(params['clienteId']);
+        this._serviceClientes.getCliente(this.clienteId).subscribe((data:Cliente)=>{
+          this.cliente = data;
+          this.loading = false;
+        });
+        this._serviceProductos.getProyectos(this.clienteId).subscribe((data:ProyectosList[])=>this.proyectosList=data);
+      }
+    )
+    // this.cliente=this._clientePrueba.getCliente();
+    // this.loading = false;
+    // this.proyectosList=this._clientePrueba.getProyecto();
   }
 
   onDetail(proyectoId:number):void{

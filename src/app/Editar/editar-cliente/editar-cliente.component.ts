@@ -20,7 +20,7 @@ export class EditarClienteComponent  implements OnInit{
 
   private _clienteServices = inject(ApiServiceClientesService);
   private _activedRouter = inject(ActivatedRoute);
-  private _clientePrueba = inject(ClienteService);
+  //private _clientePrueba = inject(ClienteService);
 
 
   constructor(private fromBuilder:FormBuilder){
@@ -34,14 +34,14 @@ export class EditarClienteComponent  implements OnInit{
   }
 
   ngOnInit(): void {
-    // this._activedRouter.params.subscribe(
-    //   params => {
-    //     this._clienteServices.getCliente(params['id']).subscribe((data:Cliente)=>{
-    //       this.cliente=data;
-    //     });
-    //   }
-    // )
-    this.cliente=this._clientePrueba.getCliente();
+    this._activedRouter.params.subscribe(
+      params => {
+        this._clienteServices.getCliente(params['id']).subscribe((data:Cliente)=>{
+          this.cliente=data;
+        });
+      }
+    )
+    //this.cliente=this._clientePrueba.getCliente();
   }
   
   hasErrors(field: string, typeError:string){

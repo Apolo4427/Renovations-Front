@@ -10,7 +10,7 @@ export class ApiPagosClienteServicesService {
 
   private _Http = inject(HttpClient);
 
-  private urlBase:string = 'https://localhost:8080/clientes';
+  private urlBase:string = 'http://localhost:8080/clientes';
 
   getPagosCliente(proyectoId:number):Observable<ListaDePagosCliente[]>{
     return this._Http.get<ListaDePagosCliente[]>(`${this.urlBase}/proyectos/${proyectoId}/pagosClientes`);

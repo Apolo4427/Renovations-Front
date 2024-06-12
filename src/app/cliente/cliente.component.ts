@@ -13,16 +13,16 @@ import { ClienteService } from '../cliente-prueba.service';
 })
 export class ClienteComponent implements OnInit {
   
-  clientesList:Cliente[]=[];
+  clientesList?:Cliente[];
 
-  //private _clienteService = inject(ApiServiceClientesService);
-  private _clientePrueba = inject(ClienteService);
+  private _clienteService = inject(ApiServiceClientesService);
+  //private _clientePrueba = inject(ClienteService);
   private _router = inject(Router);
 
   ngOnInit(): void {
-    // this._clienteService.getClientes().subscribe((data:Cliente[])=>this.clientesList=data);
-    // console.log(this.clientesList);
-    this.clientesList = [this._clientePrueba.getCliente()];
+    this._clienteService.getClientes().subscribe((data:Cliente[])=>this.clientesList=data);
+    console.log(this.clientesList);
+    //this.clientesList = [this._clientePrueba.getCliente()];
   }
 
   onDetail(clienteId:number):void{

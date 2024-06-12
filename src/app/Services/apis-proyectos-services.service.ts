@@ -12,10 +12,10 @@ export class ApisProyectosServicesService {
 
   private _Http = inject(HttpClient);
 
-  private urlBase:string = 'https://localhost:8080/clientes';
+  private urlBase:string = 'http://localhost:8080/clientes';
 
   getProyectos(clienteId:number):Observable<ProyectosList[]>{
-    return this._Http.get<ProyectosList[]>(`${this.urlBase}/proyectos/${clienteId}`);
+    return this._Http.get<ProyectosList[]>(`${this.urlBase}/proyectos/list/${clienteId}`);
   }
 
   getProyecto(proyectoId:number):Observable<ProyectosList>{

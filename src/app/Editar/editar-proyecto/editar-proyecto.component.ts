@@ -21,7 +21,7 @@ export class EditarProyectoComponent implements OnInit {
 
   private _proyectoServices = inject(ApisProyectosServicesService);
   private _activatedRouter = inject(ActivatedRoute);
-  private _clientePrueba = inject(ClienteService);
+  //private _clientePrueba = inject(ClienteService);
 
   constructor(private fromBuilder:FormBuilder){
     this.proyectoForm = this.fromBuilder.group({
@@ -36,12 +36,12 @@ export class EditarProyectoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      // this._activatedRouter.params.subscribe(params => {
-      //   this._proyectoServices.getProyecto(params['id']).subscribe((data:ProyectosList)=>{
-      //     this.proyecto = data;
-      //   });
-      // })
-      this.proyecto = this._clientePrueba.getProyecto().find((obj:ProyectosList)=>obj.proyectoId==101);
+      this._activatedRouter.params.subscribe(params => {
+        this._proyectoServices.getProyecto(params['id']).subscribe((data:ProyectosList)=>{
+          this.proyecto = data;
+        });
+      })
+      //this.proyecto = this._clientePrueba.getProyecto().find((obj:ProyectosList)=>obj.proyectoId==101);
   }
 
   hasErrors(field: string, typeError:string){

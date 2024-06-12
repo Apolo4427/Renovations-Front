@@ -13,7 +13,7 @@ export class ApiServiceClientesService {
 
   private _Http = inject(HttpClient);
 
-  private urlBase:string = 'https://localhost:8080/clientes';
+  private urlBase:string = 'http://localhost:8080/clientes';
 
   getClientes():Observable<Cliente[]>{
     return this._Http.get<Cliente[]>(this.urlBase);
@@ -35,8 +35,8 @@ export class ApiServiceClientesService {
     return this._Http.get<string[]>(`${this.urlBase}/emailsWithContrato`);
   }
 
-  crearCliente(cliente:Cliente){
-    return this._Http.post(`${this.urlBase}/registrar`,cliente);
+  crearCliente(cliente:Cliente):Observable<Cliente>{
+    return this._Http.post<Cliente>(`${this.urlBase}/registrar`,cliente);
   }
 
   actualizarCliente(cliente:Cliente, id:number){
