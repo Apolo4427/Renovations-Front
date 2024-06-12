@@ -1,9 +1,18 @@
 <div class="container" style="max-width: 80%;">
     <div class="container titulo">
-        <b class="fs-3 font-monospace">Registrar un nuevo proyecto: </b>
+        <b class="fs-3 font-monospace"> Registrar un nuevo proyecto : </b>
     </div>
     <form [formGroup]="proyectoForm" class="row g-3 needs-validation" novalidate (submit)="enviar($event)" style="width: 100%;">
         <div class="col-md-4 position-relative">
+            <div class="mb-3">
+                <label for="exampleFormControlInput0" class="form-label">Id del cliente: </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput0"
+                formControlName="clienteId"
+                value="{{clienteId}}"
+                title="Id del cliente al que se le registrara el proyecto"
+                readonly>
+            </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Numero de contrato: </label>
                 <input type="text" class="form-control" 
@@ -60,48 +69,30 @@
                      <span class="text-danger">El numero debe tener minimo 10 caracteres</span>
                  }
             </div>
-            @if(clienteEmail){
-                <div class="mb-3">
-                    <label for="exampleFormControlInput5" class="form-label">Email cliente: </label>
-                    <input type="text" class="form-control" 
-                    id="exampleFormControlInput5"
-                     placeholder="Indique quien ha referido el cliente" 
-                     formControlName="emailCliente"
-                     readonly />
-                </div>
-            }
-            @if(clienteEmail==undefined || clienteEmail==''){
-                <div class="mb-3">
-                    <label for="exampleFormControlInput5" class="form-label">Email cliente: </label>
-                    <input type="text" class="form-control" 
-                    id="exampleFormControlInput5"
-                     placeholder="Indique quien ha referido el cliente" 
-                     formControlName="emailCliente"
-                     [ngClass]="{'is-invalid': hasErrors('emailCliente','required') || hasErrors('emailCliente','email')}"/>
-                     @if(hasErrors('emailCliente','required')){
-                        <span class="text-danger">tines que rellenar este campo</span>
-                     }
-                     @if(hasErrors('emailCliente','email')){
-                        <span class="text-danger">formato de email invalido</span>
-                     }
-                </div>
-            }
+            <div class="mb-3">
+                <label for="exampleFormControlInput5" class="form-label">Email cliente: {{clienteEmail}} </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput5"
+                placeholder="Este valor ya esta asignado" 
+                formControlName="emailCliente"
+                readonly>
+            </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput6" class="form-label">Valor aprovado: </label>
                 <input type="text" class="form-control" 
                 id="exampleFormControlInput6"
-                 placeholder="Indique quien ha referido el cliente" 
-                 formControlName="referidoPor"
-                 >
+                placeholder="Indique quien ha referido el cliente" 
+                formControlName="referidoPor"
+                >
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput7" class="form-label">Fecha de pago, del valor aprovado: </label>
                 <input type="text" class="form-control" 
                 id="exampleFormControlInput7"
                 title="Si ya se a pagado la totalidad del pago, indique la fecha en la que se ha completado"
-                 placeholder="16/02/2025 (dd/mm/aaaa)" 
-                 formControlName="fechaDePagoValorAprovado"
-                 >
+                placeholder="16/02/2025 (dd/mm/aaaa)" 
+                formControlName="fechaDePagoValorAprovado"
+                >
             </div>
         <div class="col-12" style="margin: 20px 0px;">
           <button class="btn btn-success" type="submit">Registrar</button>

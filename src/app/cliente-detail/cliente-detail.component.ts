@@ -15,7 +15,7 @@ import { ClienteService } from '../cliente-prueba.service';
 })
 export class ClienteDetailComponent implements OnInit {
 
-  //private _serviceClientes = inject(ApiServiceClientesService);
+  private _serviceClientes = inject(ApiServiceClientesService);
   private _serviceProductos = inject(ApisProyectosServicesService);
   //private _activedRoute = inject(ActivatedRoute);
   private _router = inject(Router);
@@ -46,8 +46,9 @@ export class ClienteDetailComponent implements OnInit {
     this._router.navigate(['proyecto',proyectoId]);
   }
 
-  onNuevoProyecto(clienteEmail:string | undefined):void{
-   // this._serviceClientes.clienteEmail=clienteEmail;
+  onNuevoProyecto():void{
+    this._serviceClientes.clienteEmail=this.cliente?.email;
+    this._serviceClientes.clienteId = this.cliente?.id;
     this._router.navigate(['registrarProyecto']);
   }
 

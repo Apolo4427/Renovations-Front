@@ -18,7 +18,8 @@ export class RegistrarClienteComponent {
       email:['', [Validators.required,Validators.email]],
       nombre: ['', [Validators.required,Validators.minLength(3)]],
       direccion: ['', [Validators.required,Validators.minLength(4)]],
-      contacto: ['', [Validators.required,Validators.minLength(10)]]
+      contacto: ['', [Validators.required,Validators.minLength(10)]],
+      referidoPor: ['', [Validators.minLength(3)]]
     });
   }
 

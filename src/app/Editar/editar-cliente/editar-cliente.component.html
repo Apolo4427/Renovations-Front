@@ -1,1 +1,75 @@
-<p>editar-cliente works!</p>
+<div class="container" style="max-width: 80%;">
+    <div class="container titulo">
+        <b class="fs-3 font-monospace">Editar al cliente {{cliente?.nombre}}: </b>
+    </div>
+    <br>
+    <form [formGroup]="clienteForm" class="row g-3 needs-validation" novalidate (submit)="enviar($event)" style="width: 100%;">
+        <div class="col-md-4 position-relative">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nombre: </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput1"
+                 placeholder="Nombre del cliente" 
+                 formControlName="nombre"
+                 [ngClass]="{'is-invalid': hasErrors('nombre','required') || hasErrors('nombre','minlength')}">
+                @if(hasErrors('nombre','required')){
+                    <span class="text-danger">tines que rellenar este campo</span>
+                }
+                @if(hasErrors('nombre','minlength')){
+                    <span class="text-danger">El nombre debe tener minimo 3 caracteres</span>
+                }                 
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput2" class="form-label">Email: </label>
+                <input type="email" class="form-control" 
+                id="exampleFormControlInput2"
+                 placeholder="name@example.com" 
+                 formControlName="email"
+                 [ngClass]="{'is-invalid': hasErrors('email','required') || hasErrors('email','email')}"/>
+                 @if(hasErrors('email','required')){
+                    <span class="text-danger">tines que rellenar este campo</span>
+                 }
+                 @if(hasErrors('email','email')){
+                    <span class="text-danger">formato de email invalido</span>
+                 }
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput3" class="form-label">Direccion: </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput3"
+                 placeholder="Direccion del cliente" 
+                 formControlName="direccion"
+                 [ngClass]="{'is-invalid': hasErrors('direccion','required') || hasErrors('direccion','minlength')}">
+                 @if(hasErrors('direccion','required')){
+                     <span class="text-danger">tines que rellenar este campo</span>
+                 }
+                 @if(hasErrors('direccion','minlength')){
+                     <span class="text-danger">La Direccion debe tener minimo 4 caracteres</span>
+                 }
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput4" class="form-label">Contacto: </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput4"
+                 placeholder="Numero telefonico del cliente" 
+                 formControlName="contacto"
+                 [ngClass]="{'is-invalid': hasErrors('contacto','required') || hasErrors('contacto','minlength')}">
+                 @if(hasErrors('contacto','required')){
+                     <span class="text-danger">tines que rellenar este campo</span>
+                 }
+                 @if(hasErrors('contacto','minlength')){
+                     <span class="text-danger">El numero debe tener minimo 10 caracteres</span>
+                 }
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput5" class="form-label">Referido por: </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput5"
+                 placeholder="Indique quien ha referido el cliente" 
+                 formControlName="referidoPor"
+                 >
+            </div>
+        <div class="col-12" style="margin: 20px 0px;">
+          <button class="btn btn-success" type="submit">Registrar</button>
+        </div>
+</div>

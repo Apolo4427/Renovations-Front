@@ -12,7 +12,8 @@ import { ApiServiceClientesService } from '../../Services/api-service-clientes.s
 })
 export class RegistrarProyectoComponent implements OnInit{
 
-  clienteEmail?:string='';
+  clienteId?:number;
+  clienteEmail?:string;
   proyectoForm!: FormGroup;//"!" significa que nos comprometemos a que nunca sea null
 
   private _clienteServices = inject(ApiServiceClientesService);
@@ -23,7 +24,7 @@ export class RegistrarProyectoComponent implements OnInit{
       fechaEstimado: ['', [Validators.required,Validators.minLength(3)]],
       fechaInicio: ['', [Validators.required,Validators.minLength(4)]],
       contratante: ['', [Validators.required,Validators.minLength(10)]],
-      emailCliente: [{value: this.clienteEmail}, [Validators.required,Validators.email]],
+      emailCliente: [''],
       valorAprovado: ['', [Validators.required,Validators.minLength(10)]],
       fechaDePagoValorAprovado: ['', [Validators.required,Validators.minLength(10)]]
     });
@@ -31,6 +32,7 @@ export class RegistrarProyectoComponent implements OnInit{
 
   ngOnInit(): void {
       this.clienteEmail = this._clienteServices.clienteEmail;
+      this.clienteId = this._clienteServices.clienteId;
   }
 
   hasErrors(field: string, typeError:string){

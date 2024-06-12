@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class ApiServiceClientesService {
 
   public clienteEmail?:string;
+  public clienteId?:number;
 
   private _Http = inject(HttpClient);
 
