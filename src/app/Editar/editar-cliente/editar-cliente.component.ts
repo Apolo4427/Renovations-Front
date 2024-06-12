@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Cliente } from '../../models/Cliente.model';
 import { ClienteService } from '../../cliente-prueba.service';
 import { NgClass } from '@angular/common';
-import { validateHeaderValue } from 'http';
 
 @Component({
   selector: 'app-editar-cliente',

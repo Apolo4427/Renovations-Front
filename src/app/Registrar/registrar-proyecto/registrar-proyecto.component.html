@@ -66,7 +66,7 @@
                      <span class="text-danger">tines que rellenar este campo</span>
                  }
                  @if(hasErrors('contratante','minlength')){
-                     <span class="text-danger">El numero debe tener minimo 10 caracteres</span>
+                     <span class="text-danger">El campo debe tener minimo 4 caracteres</span>
                  }
             </div>
             <div class="mb-3">
@@ -81,9 +81,12 @@
                 <label for="exampleFormControlInput6" class="form-label">Valor aprovado: </label>
                 <input type="text" class="form-control" 
                 id="exampleFormControlInput6"
-                placeholder="Indique quien ha referido el cliente" 
-                formControlName="referidoPor"
-                >
+                placeholder="Indique el valor con el que se aprobo el proyecto" 
+                formControlName="valorAprobado"
+                [ngClass]="{'is-invalid': hasErrors('valorAprobado','minlength')}">
+                @if(hasErrors('valorAprobado','minlength')){
+                    <span class="text-danger">El numero debe tener minimo 3 caracteres</span>
+                }
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput7" class="form-label">Fecha de pago, del valor aprovado: </label>
@@ -91,8 +94,11 @@
                 id="exampleFormControlInput7"
                 title="Si ya se a pagado la totalidad del pago, indique la fecha en la que se ha completado"
                 placeholder="16/02/2025 (dd/mm/aaaa)" 
-                formControlName="fechaDePagoValorAprovado"
-                >
+                formControlName="fechaDePagoValorAprobado"
+                [ngClass]="{'is-invalid': hasErrors('fechaDePagoValorAprobado','minlength')}">
+                @if(hasErrors('fechaDePagoValorAprobado','minlength')){
+                    <span class="text-danger">La fecha debe tener minimo 3 caracteres</span>
+                }
             </div>
         <div class="col-12" style="margin: 20px 0px;">
           <button class="btn btn-success" type="submit">Registrar</button>

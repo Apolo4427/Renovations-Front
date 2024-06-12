@@ -1,1 +1,83 @@
-<p>editar-proyecto works!</p>
+<div class="container" style="max-width: 80%;">
+    <div class="container titulo">
+        <b class="fs-3 font-monospace"> Editar el proyecto con numero de contrato: {{proyecto?.numeroContrato}}</b>
+    </div>
+    <form [formGroup]="proyectoForm" class="row g-3 needs-validation" novalidate (submit)="enviar($event)" style="width: 100%;">
+        <div class="col-md-4 position-relative">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Numero de contrato: {{proyecto?.numeroContrato}}</label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput1"
+                 placeholder="Numero de contrato del proyecto" 
+                 formControlName="numeroContrato"
+                 value="{{proyecto?.numeroContrato}}"
+                readonly>               
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput2" class="form-label">Fecha de estimado: </label>
+                <input type="email" class="form-control" 
+                id="exampleFormControlInput2"
+                 placeholder="16/02/2025 (dd/mm/aaaa)" 
+                 formControlName="fechaEstimado"
+                 [ngClass]="{'is-invalid': hasErrors('fechaEstimado','minlength')}"/>
+                 @if(hasErrors('fechaEstimado','minlength')){
+                    <span class="text-danger">El campo debe tener minimo 3 caracteres</span>
+                 }
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput3" class="form-label">Fecha de inicio: </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput3"
+                 placeholder="16/02/2025 (dd/mm/aaaa)" 
+                 formControlName="fechaInicio"
+                 [ngClass]="{'is-invalid': hasErrors('fechaInicio','minlength')}">
+                 @if(hasErrors('fechaInicio','minlength')){
+                     <span class="text-danger">El campo debe tener minimo 4 caracteres</span>
+                 }
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput4" class="form-label">Contratante: </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput4"
+                 placeholder="Contratante" 
+                 formControlName="contratante"
+                 [ngClass]="{'is-invalid': hasErrors('contratante','minlength')}">
+                 @if(hasErrors('contratante','minlength')){
+                     <span class="text-danger">El campo debe tener minimo 3 caracteres</span>
+                 }
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput5" class="form-label">Email cliente: {{proyecto?.emailCliente}} </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput5"
+                placeholder="Este valor ya esta asignado" 
+                formControlName="emailCliente"
+                readonly>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput6" class="form-label">Valor aprovado: </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput6"
+                placeholder="Indique el valor con el que se aprobo el proyecto" 
+                formControlName="valorAprobado"
+                [ngClass]="{'is-invalid': hasErrors('valorAprobado','minlength')}">
+                @if(hasErrors('valorAprobado','minlength')){
+                    <span class="text-danger">El numero debe tener minimo 3 caracteres</span>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput7" class="form-label">Fecha de pago, del valor aprovado: </label>
+                <input type="text" class="form-control" 
+                id="exampleFormControlInput7"
+                title="Si ya se a pagado la totalidad del pago, indique la fecha en la que se ha completado"
+                placeholder="16/02/2025 (dd/mm/aaaa)" 
+                formControlName="fechaDePagoValorAprobado"
+                [ngClass]="{'is-invalid': hasErrors('fechaDePagoValorAprobado','minlength')}">
+                @if(hasErrors('fechaDePagoValorAprobado','minlength')){
+                    <span class="text-danger">El numero debe tener minimo 3 caracteres</span>
+                }
+            </div>
+        <div class="col-12" style="margin: 20px 0px;">
+          <button class="btn btn-success" type="submit">Actualizar</button>
+        </div>
+</div>
