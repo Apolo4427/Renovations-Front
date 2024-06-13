@@ -36,7 +36,7 @@ export class EditarClienteComponent  implements OnInit{
   ngOnInit(): void {
     this._activedRouter.params.subscribe(
       params => {
-        this._clienteServices.getCliente(params['id']).subscribe((data:Cliente)=>{
+        this._clienteServices.getCliente(params['clienteId']).subscribe((data:Cliente)=>{
           this.cliente=data;
         });
       }
