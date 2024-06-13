@@ -18,14 +18,14 @@ export class BuscadorClientesComponent implements OnInit{
   clientesLinst:Cliente[]=[];
   clientesSignal = signal<Cliente[]>([]);
 
-  private _render = inject(Renderer2);
-  //private _cliernteService = inject(ApiServiceClientesService);
+  //private _render = inject(Renderer2);
+  private _cliernteService = inject(ApiServiceClientesService);
   private _router = inject(Router);
   private _clientePrueba = inject(ClienteService);
 
   ngOnInit(): void {
-  //    this._cliernteService.getClientes().subscribe((data:Cliente[])=>this.clientesLinst=data);
-      this.clientesLinst= [this._clientePrueba.getCliente()];
+      this._cliernteService.getClientes().subscribe((data:Cliente[])=>this.clientesLinst=data);
+      // this.clientesLinst= [this._clientePrueba.getCliente()];
       this.clientesSignal = signal<Cliente[]>(this.clientesLinst);
   }
 

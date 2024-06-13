@@ -52,7 +52,8 @@ export class RegistrarClienteComponent implements OnInit {
         if(this.clientes[i].email==email){
           alert('Ese email ya se encuentra registrado.');
           this.emailExistente = true;//indicamos que el email ya se encuntra en la lista de clientes
-          break
+          this._router.navigate(['cliente']);
+          break;
         }
       }
       if (this.clienteForm.valid && !this.emailExistente) {

@@ -22,7 +22,7 @@ export class ClienteDetailComponent implements OnInit {
   //private _clientePrueba = inject(ClienteService);
 
   public cliente?:Cliente;
-  clienteId:number=0;
+  clienteId?:number=this.cliente?.id;
   public proyectosList?:ProyectosList[];
   loading:boolean=true;
 

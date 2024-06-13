@@ -13,7 +13,7 @@ import { ClienteService } from '../cliente-prueba.service';
 })
 export class ClienteComponent implements OnInit {
   
-  clientesList?:Cliente[];
+  clientesList:Cliente[]=[];
 
   private _clienteService = inject(ApiServiceClientesService);
   //private _clientePrueba = inject(ClienteService);
@@ -26,6 +26,11 @@ export class ClienteComponent implements OnInit {
   }
 
   onDetail(clienteId:number):void{
+    for(let i=0;i<this.clientesList?.length;i++){
+      if (clienteId == this.clientesList[i].id){
+        this._clienteService.clienteId = this.clientesList[i].id;
+      }
+    }
     this._router.navigate(['cliente',clienteId]);
   }
 }
