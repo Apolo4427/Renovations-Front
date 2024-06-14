@@ -60,7 +60,7 @@ export class RegistrarProyectoComponent implements OnInit{
     if(!this.loading){
       const numeroContraro = this.proyectoForm.get('numeroContrato')?.value;
       for(let i=0;i<this.proyectosCliente.length;i++){
-        if(numeroContraro===this.proyectosCliente[i].numeroContrato){
+        if(numeroContraro==this.proyectosCliente[i].numeroContrato){
           alert('Ese numero de contrato ya se encuentra registrado');
           this.numeroExistente = true;
           this._router.navigate(['cliente',this.clienteId]);
@@ -72,11 +72,15 @@ export class RegistrarProyectoComponent implements OnInit{
         this._proyectosServices.crearProyecto(this.clienteId, nuevoProyecto).subscribe(
           response => {
             console.log('Proyecto registrado:', response);
-            alert(response.message || 'El proyecto se ha registrado correctamente.');
+            alert('El proyecto se ha registrado correctamente.');
             this._router.navigate(['cliente', this.clienteId]);
           },error => {
             console.error('Error al registrar el proyecto:', error);
-            alert(error.error.message || 'Hubo un error al registrar el proyecto.');
+            if (error.status === 400) {
+              alert('El número de contrato ya existe.');
+            } else {
+              alert('Hubo un error al registrar el proyecto.');
+            }
           }
         );
       }else {

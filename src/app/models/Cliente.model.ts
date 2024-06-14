@@ -54,7 +54,4 @@ export interface ListaDePagosCliente {
     pagoClienteId: number;
 }
 
-export interface ServerResponse {
-    message: string;
-}
   
