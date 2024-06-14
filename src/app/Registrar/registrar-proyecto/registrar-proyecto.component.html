@@ -5,12 +5,12 @@
     <form [formGroup]="proyectoForm" class="row g-3 needs-validation" novalidate (submit)="enviar($event)" style="width: 100%;">
         <div class="col-md-4 position-relative">
             <div class="mb-3">
-                <label for="exampleFormControlInput0" class="form-label">Id del cliente: </label>
+                <label for="exampleFormControlInput0" class="form-label">Id del cliente: {{clienteId}} </label>
                 <input type="text" class="form-control" 
                 id="exampleFormControlInput0"
-                formControlName="clienteId"
-                value="{{clienteId}}"
+                formControlName="clienteIdform"
                 title="Id del cliente al que se le registrara el proyecto"
+                placeholder="Valor ya asignado"
                 readonly>
             </div>
             <div class="mb-3">
@@ -101,6 +101,6 @@
                 }
             </div>
         <div class="col-12" style="margin: 20px 0px;">
-          <button class="btn btn-success" type="submit">Registrar</button>
+          <button class="btn btn-success" type="submit" [disabled]="loading">Registrar</button>
         </div>
 </div>

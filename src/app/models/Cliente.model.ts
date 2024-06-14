@@ -53,3 +53,8 @@ export interface ListaDePagosCliente {
     //factura:       string;
     pagoClienteId: number;
 }
+
+export interface ServerResponse {
+    message: string;
+}
+  

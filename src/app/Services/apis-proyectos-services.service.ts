@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProyectosList } from '../models/Cliente.model';
+import { ProyectosList, ServerResponse } from '../models/Cliente.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -20,5 +20,13 @@ export class ApisProyectosServicesService {
 
   getProyecto(proyectoId:number):Observable<ProyectosList>{
     return this._Http.get<ProyectosList>(`${this.urlBase}/proyectos/${proyectoId}`);
+  }
+
+  crearProyecto(clienteId:number, proyecto:ProyectosList):Observable<ServerResponse>{
+    return this._Http.post<ServerResponse>(`${this.urlBase}/proyectos/${clienteId}/nuevoProyecto`, proyecto);
+  }
+
+  actualizarProyecto(proyectoId:number, proyecto:ProyectosList):Observable<ProyectosList>{
+    return this._Http.patch<ProyectosList>(`${this.urlBase}/proyectos/${proyectoId}/editarProyecto`, proyecto);
   }
 }
