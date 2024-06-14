@@ -31,6 +31,7 @@ export class RegistrarClienteComponent implements OnInit {
       referidoPor: ['', [Validators.minLength(3)]]
     });
   }
+  
   ngOnInit(): void {
     this._clienteServices.getClientes().subscribe((data:Cliente[])=>{
       this.clientes=data;
