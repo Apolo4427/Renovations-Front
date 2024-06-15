@@ -39,8 +39,8 @@ export class ApiServiceClientesService {
     return this._Http.post<Cliente>(`${this.urlBase}/registrar`,cliente);
   }
 
-  actualizarCliente(cliente:Cliente, id:number){
-    return this._Http.put(`${this.urlBase}/actualizar/${id}`,cliente);
+  actualizarCliente(cliente:Cliente, id:number):Observable<Cliente>{
+    return this._Http.patch<Cliente>(`${this.urlBase}/actualizar/${id}`,cliente);
   }
 
   eliminarCliente(id:number){

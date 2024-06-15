@@ -17,6 +17,7 @@ export class EditarClienteComponent  implements OnInit{
 
   clienteForm!: FormGroup;//"!" significa que nos comprometemos a que nunca sea null
   cliente?:Cliente;
+  clienteEmail?:string;
   clientesList:Cliente[]=[];
   loading:boolean=true;
   emailExistente:boolean = false;
@@ -33,7 +34,7 @@ export class EditarClienteComponent  implements OnInit{
       nombre: ['', [Validators.minLength(3)]],
       direccion: ['', [Validators.minLength(4)]],
       contacto: ['', [Validators.minLength(10)]],
-      referidoPor: ['',[Validators.minLength(3)]]
+      referido_por: ['',[Validators.minLength(3)]]
     });
   }
 
@@ -42,6 +43,7 @@ export class EditarClienteComponent  implements OnInit{
       params => {
         this._clienteServices.getCliente(params['clienteId']).subscribe((data:Cliente)=>{
           this.cliente=data;
+          this.clienteEmail=this.cliente.email;
         });
         this._clienteServices.getClientes().subscribe((data:Cliente[])=>{
           this.clientesList = data;
@@ -58,7 +60,7 @@ export class EditarClienteComponent  implements OnInit{
 
   enviar(event: Event, clienteId:number | undefined):void{
     event.preventDefault();
-    const email = this.clienteForm.get('email')?.value;
+    let email = this.clienteForm.get('email')?.value;
     if(!this.loading && clienteId){
       for(let i =0; i<this.clientesList.length;i++){
         if(this.clientesList[i].email==email){
@@ -66,9 +68,27 @@ export class EditarClienteComponent  implements OnInit{
           this.emailExistente = true;//indicamos que el email ya se encuntra en la lista de clientes
           this._router.navigate(['cliente',clienteId]);
           break;
-        }
+        } 
+        //borrar
+      // }console.log(email, email.trim().length === 0, email === null);
+      // email = this.clienteForm.get('emailCliente')?.setValue(this.clienteEmail);
+      // console.log(email, 'email actualizado');
       }if (this.clienteForm.valid && !this.emailExistente){
-        const clienteActualizado:Cliente = this.clienteForm.value; 
+        if(email.trim().length=== 0 || email === null){
+          email = this.cliente?.email;
+          const clienteActualizado = this.clienteForm.value;
+          this._clienteServices.actualizarCliente(clienteActualizado, clienteId).subscribe(
+            response => {
+              console.log('Cliente registrado:', response);
+              alert('Cliente actualizado correctamente');
+              this._router.navigate(['cliente',clienteId]);
+            },
+            error => {
+              console.error('Error al registrar el cliente:', error);
+            }
+          );
+        }else{
+          const clienteActualizado:Cliente = this.clienteForm.value; 
         this._clienteServices.actualizarCliente(clienteActualizado, clienteId).subscribe(
           response => {
             console.log('Cliente registrado:', response);
@@ -78,7 +98,8 @@ export class EditarClienteComponent  implements OnInit{
           error => {
             console.error('Error al registrar el cliente:', error);
           }
-        )
+        );
+        } 
       }else {
         console.log('Formulario no válido');
       }

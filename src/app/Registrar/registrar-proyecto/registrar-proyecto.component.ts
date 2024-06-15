@@ -77,7 +77,7 @@ export class RegistrarProyectoComponent implements OnInit{
           },error => {
             console.error('Error al registrar el proyecto:', error);
             if (error.status === 400) {
-              alert('El número de contrato ya existe.');
+              alert('Ese número de contrato ya existe.');
             } else {
               alert('Hubo un error al registrar el proyecto.');
             }
