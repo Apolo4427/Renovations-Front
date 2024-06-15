@@ -23,7 +23,7 @@ export class CorreosComponent implements OnInit{
       this.correosList=data;
     });
     this.correosNoCargados=false;
-    console.log(this.correosNoCargados);
+    console.log(this.correosList);
   }
 
   onCorreosConContrato():void{
@@ -31,7 +31,7 @@ export class CorreosComponent implements OnInit{
       this.correosList=data;
     });
     this.correosNoCargados=false;
-    console.log(this.correosNoCargados);
+    console.log(this.correosList);
   }
 
   onCorreosSinContrato():void{
@@ -39,7 +39,7 @@ export class CorreosComponent implements OnInit{
       this.correosList=data;
     });
     this.correosNoCargados=false;
-    console.log(this.correosNoCargados);
+    console.log(this.correosList);
   }
 
   copiarCorreos(){
