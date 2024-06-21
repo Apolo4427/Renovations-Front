@@ -28,7 +28,7 @@ export class RegistrarClienteComponent implements OnInit {
       nombre: ['', [Validators.required,Validators.minLength(3)]],
       direccion: ['', [Validators.required,Validators.minLength(4)]],
       contacto: ['', [Validators.required,Validators.minLength(10)]],
-      referidoPor: ['', [Validators.minLength(3)]]
+      referido_por: ['', [Validators.minLength(3)]]
     });
   }
   
@@ -56,7 +56,7 @@ export class RegistrarClienteComponent implements OnInit {
           this._router.navigate(['cliente']);
           break;
         }
-      }
+      }//console.log(this.clienteForm.get('referidoPor')?.value);
       if (this.clienteForm.valid && !this.emailExistente) {
         const nuevoCliente: Cliente = this.clienteForm.value;
         this._clienteServices.crearCliente(nuevoCliente).subscribe(

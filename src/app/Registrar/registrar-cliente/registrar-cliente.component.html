@@ -66,8 +66,11 @@
                 <input type="text" class="form-control" 
                 id="exampleFormControlInput5"
                  placeholder="Indique quien ha referido el cliente" 
-                 formControlName="referidoPor"
-                 >
+                 formControlName="referido_por"
+                 [ngClass]="{'is-invalid': hasErrors('referidoPor','minlength')}">
+                @if(hasErrors('referidoPor','minlength')){
+                    <span class="text-danger">El numero debe tener minimo 10 caracteres</span>
+                }
             </div>
         <div class="col-12" style="margin: 20px 0px;">
           <button class="btn btn-success" type="submit" [disabled]="loading">Registrar</button>

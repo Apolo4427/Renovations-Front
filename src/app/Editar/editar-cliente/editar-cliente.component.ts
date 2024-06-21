@@ -43,7 +43,7 @@ export class EditarClienteComponent  implements OnInit{
       params => {
         this._clienteServices.getCliente(params['clienteId']).subscribe((data:Cliente)=>{
           this.cliente=data;
-          this.clienteEmail=this.cliente.email;
+          this.clienteEmail=this._clienteServices.clienteEmail;
         });
         this._clienteServices.getClientes().subscribe((data:Cliente[])=>{
           this.clientesList = data;
@@ -60,23 +60,26 @@ export class EditarClienteComponent  implements OnInit{
 
   enviar(event: Event, clienteId:number | undefined):void{
     event.preventDefault();
-    let email = this.clienteForm.get('email')?.value;
+    let emailActualizado = this.clienteForm.get('email')?.value;
     if(!this.loading && clienteId){
       for(let i =0; i<this.clientesList.length;i++){
-        if(this.clientesList[i].email==email){
+        if(this.clientesList[i].email==emailActualizado){
           alert('Ese email ya se encuentra registrado.');
           this.emailExistente = true;//indicamos que el email ya se encuntra en la lista de clientes
           this._router.navigate(['cliente',clienteId]);
           break;
         } 
-        //borrar
-      // }console.log(email, email.trim().length === 0, email === null);
-      // email = this.clienteForm.get('emailCliente')?.setValue(this.clienteEmail);
-      // console.log(email, 'email actualizado');
+        // borrar
+      // }console.log(emailActualizado, emailActualizado.trim().length === 0, emailActualizado === null);
+      // emailActualizado = this.clienteForm.get('emailCliente')?.setValue(this.clienteEmail);
+      // console.log(emailActualizado, 'email actualizado');
+      // console.log(this.clienteEmail);
+      // const {email, ...clienteActualizado} = this.clienteForm.value;
+      // console.log(clienteActualizado);
       }if (this.clienteForm.valid && !this.emailExistente){
-        if(email.trim().length=== 0 || email === null){
-          email = this.cliente?.email;
-          const clienteActualizado = this.clienteForm.value;
+        if(emailActualizado.trim().length=== 0 || emailActualizado === null){
+          //emailActualizado = this.cliente?.email;
+          const {email, ...clienteActualizado} = this.clienteForm.value;
           this._clienteServices.actualizarCliente(clienteActualizado, clienteId).subscribe(
             response => {
               console.log('Cliente registrado:', response);
@@ -89,7 +92,7 @@ export class EditarClienteComponent  implements OnInit{
           );
         }else{
           const clienteActualizado:Cliente = this.clienteForm.value; 
-        this._clienteServices.actualizarCliente(clienteActualizado, clienteId).subscribe(
+          this._clienteServices.actualizarCliente(clienteActualizado, clienteId).subscribe(
           response => {
             console.log('Cliente registrado:', response);
             alert('Cliente actualizado correctamente');

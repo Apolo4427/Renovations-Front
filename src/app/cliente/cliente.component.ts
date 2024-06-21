@@ -29,6 +29,7 @@ export class ClienteComponent implements OnInit {
     for(let i=0;i<this.clientesList?.length;i++){
       if (clienteId == this.clientesList[i].id){
         this._clienteService.clienteId = this.clientesList[i].id;
+        this._clienteService.clienteEmail = this.clientesList[i].email;
       }
     }
     this._router.navigate(['cliente',clienteId]);
