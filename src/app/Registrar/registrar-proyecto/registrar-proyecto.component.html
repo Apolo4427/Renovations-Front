@@ -32,12 +32,12 @@
                 <input type="email" class="form-control" 
                 id="exampleFormControlInput2"
                  placeholder="16/02/2025 (dd/mm/aaaa)" 
-                 formControlName="fechaEstimado"
-                 [ngClass]="{'is-invalid': hasErrors('fechaEstimado','required') || hasErrors('fechaEstimado','minlength')}"/>
-                 @if(hasErrors('fechaEstimado','required')){
+                 formControlName="fecha_estimado"
+                 [ngClass]="{'is-invalid': hasErrors('fecha_estimado','required') || hasErrors('fecha_estimado','minlength')}"/>
+                 @if(hasErrors('fecha_estimado','required')){
                     <span class="text-danger">tines que rellenar este campo</span>
                  }
-                 @if(hasErrors('fechaEstimado','minlength')){
+                 @if(hasErrors('fecha_estimado','minlength')){
                     <span class="text-danger">formato de email invalido</span>
                  }
             </div>
@@ -46,13 +46,13 @@
                 <input type="text" class="form-control" 
                 id="exampleFormControlInput3"
                  placeholder="16/02/2025 (dd/mm/aaaa)" 
-                 formControlName="fechaInicio"
-                 [ngClass]="{'is-invalid': hasErrors('direccion','required') || hasErrors('direccion','minlength')}">
-                 @if(hasErrors('direccion','required')){
+                 formControlName="fecha_inicio"
+                 [ngClass]="{'is-invalid': hasErrors('fecha_inicio','required') || hasErrors('fecha_inicio','minlength')}">
+                 @if(hasErrors('fecha_inicio','required')){
                      <span class="text-danger">tines que rellenar este campo</span>
                  }
-                 @if(hasErrors('direccion','minlength')){
-                     <span class="text-danger">La Direccion debe tener minimo 4 caracteres</span>
+                 @if(hasErrors('fecha_inicio','minlength')){
+                     <span class="text-danger">La fecha debe tener minimo 4 caracteres</span>
                  }
             </div>
             <div class="mb-3">
@@ -82,9 +82,9 @@
                 <input type="text" class="form-control" 
                 id="exampleFormControlInput6"
                 placeholder="Indique el valor con el que se aprobo el proyecto" 
-                formControlName="valorAprobado"
-                [ngClass]="{'is-invalid': hasErrors('valorAprobado','minlength')}">
-                @if(hasErrors('valorAprobado','minlength')){
+                formControlName="valor_aprovado"
+                [ngClass]="{'is-invalid': hasErrors('valor_aprovado','minlength')}">
+                @if(hasErrors('valor_aprovado','minlength')){
                     <span class="text-danger">El numero debe tener minimo 3 caracteres</span>
                 }
             </div>
@@ -94,9 +94,9 @@
                 id="exampleFormControlInput7"
                 title="Si ya se a pagado la totalidad del pago, indique la fecha en la que se ha completado"
                 placeholder="16/02/2025 (dd/mm/aaaa)" 
-                formControlName="fechaDePagoValorAprobado"
-                [ngClass]="{'is-invalid': hasErrors('fechaDePagoValorAprobado','minlength')}">
-                @if(hasErrors('fechaDePagoValorAprobado','minlength')){
+                formControlName="fechaDePago_velorAprovado"
+                [ngClass]="{'is-invalid': hasErrors('fechaDePago_velorAprovado','minlength')}">
+                @if(hasErrors('fechaDePago_velorAprovado','minlength')){
                     <span class="text-danger">La fecha debe tener minimo 3 caracteres</span>
                 }
             </div>

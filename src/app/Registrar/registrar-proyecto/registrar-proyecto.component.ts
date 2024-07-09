@@ -31,12 +31,12 @@ export class RegistrarProyectoComponent implements OnInit{
     this.proyectoForm = this.fromBuilder.group({
       clienteIdform: [''],
       numeroContrato:['', [Validators.required,Validators.minLength(3)]],
-      fechaEstimado: ['', [Validators.required,Validators.minLength(3)]],
-      fechaInicio: ['', [Validators.minLength(3)]],
+      fecha_estimado: ['', [Validators.required,Validators.minLength(3)]],
+      fecha_inicio: ['', [Validators.minLength(3)]],
       contratante: ['', [Validators.required,Validators.minLength(4)]],
       emailCliente: [''],
-      valorAprobado: ['', [Validators.minLength(3)]],
-      fechaDePagoValorAprobado: ['', [Validators.minLength(3)]]
+      valor_aprovado: ['', [Validators.minLength(3)]],
+      fechaDePago_velorAprovado: ['', [Validators.minLength(3)]]
     });
   }
 
