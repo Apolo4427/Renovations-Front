@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApisProyectosServicesService } from '../../Services/apis-proyectos-services.service';
 import { NgClass } from '@angular/common';
+import { ApiPagosAliadosService } from '../../Services/api-pagos-aliados.service';
 
 @Component({
   selector: 'app-pago-aliado',
@@ -16,6 +17,7 @@ export class PagoAliadoComponent implements OnInit {
   clienteForm!: FormGroup;//"!" significa que nos comprometemos a que nunca sea null
 
   private _proyectoServices = inject(ApisProyectosServicesService);
+  private _pagosAliadosServices = inject(ApiPagosAliadosService);
   
   constructor(private fromBuilder:FormBuilder){
     this.clienteForm = this.fromBuilder.group({
@@ -36,8 +38,7 @@ export class PagoAliadoComponent implements OnInit {
   enviar(event: Event){
     event.preventDefault();
     console.log('Enviado')
-    this.clienteForm.get('email')?.setValue('');
-    this.clienteForm.get('mensaje')?.setValue('');
+    //IMPLEMENTAR LOGICA PARA GUARDAR LOS PAGOS REGISTRADOS EN EL FORMULARIO
   }
 
 }

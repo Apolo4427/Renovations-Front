@@ -15,4 +15,8 @@ export class ApiPagosAliadosService {
   getPagosAliados(proyectoId:number):Observable<ListaDePagosAliado[]>{
     return this._Http.get<ListaDePagosAliado[]>(`${this.urlBase}/proyectos/${proyectoId}/pagosAliados`);
   }
+
+  crearPagoAliado(proyectoId:number, pagoAliado:ListaDePagosAliado):Observable<ListaDePagosAliado>{
+    return this._Http.post<ListaDePagosAliado>(`${this.urlBase}/proyectos/${proyectoId}/registrarPago`, pagoAliado);
+  }
 }
