@@ -1,9 +1,11 @@
 <div class="container" style="max-width: 80%;">
     <div class="container titulo">
         <b class="fs-3 font-monospace">Registrar un nuevo pago a una compañia aliada: </b>
+        <p><b>Numero de contrato del proyecto:</b> {{proyecto?.numeroContrato}} </p>
+        <p><b>Email del cliente:</b> {{proyecto?.emailCliente}} </p>
     </div>
     <br>
-    <form [formGroup]="clienteForm" class="row g-3 needs-validation" novalidate (submit)="enviar($event)" style="width: 100%;">
+    <form [formGroup]="pagoAliadoForm" class="row g-3 needs-validation" novalidate (submit)="enviar($event)" style="width: 100%;">
         <div class="col-md-4 position-relative">
             <div class="mb-3">
                 <label for="exampleFormControlInput0" class="form-label">Compañia aliada: </label>
@@ -48,6 +50,6 @@
                  }
             </div>
         <div class="col-12" style="margin: 20px 0px;">
-          <button class="btn btn-success" type="submit">Registrar</button>
+          <button class="btn btn-success" type="submit" [disabled]="loading">Registrar</button>
         </div>
 </div>

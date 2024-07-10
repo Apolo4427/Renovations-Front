@@ -1,8 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApisProyectosServicesService } from '../../Services/apis-proyectos-services.service';
-import { NgClass } from '@angular/common';
+import { Location, NgClass } from '@angular/common';
 import { ApiPagosAliadosService } from '../../Services/api-pagos-aliados.service';
+import { ProyectosList } from '../../models/Cliente.model';
 
 @Component({
   selector: 'app-pago-aliado',
@@ -14,13 +15,16 @@ import { ApiPagosAliadosService } from '../../Services/api-pagos-aliados.service
 export class PagoAliadoComponent implements OnInit {
 
   idProyecto?:number;
-  clienteForm!: FormGroup;//"!" significa que nos comprometemos a que nunca sea null
+  proyecto?:ProyectosList;
+  pagoAliadoForm!: FormGroup;//"!" significa que nos comprometemos a que nunca sea null
+  loading:boolean=true;
 
   private _proyectoServices = inject(ApisProyectosServicesService);
   private _pagosAliadosServices = inject(ApiPagosAliadosService);
+  private _location = inject(Location);
   
   constructor(private fromBuilder:FormBuilder){
-    this.clienteForm = this.fromBuilder.group({
+    this.pagoAliadoForm = this.fromBuilder.group({
       fechaDePago: ['', [Validators.required,Validators.minLength(3)]],
       empresaAliada: ['', [Validators.required,Validators.minLength(4)]],
       valorPagado: ['', [Validators.required,Validators.minLength(2)]]
@@ -29,16 +33,36 @@ export class PagoAliadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.idProyecto = this._proyectoServices.idProyecto;
+    if(this.idProyecto){
+      this._proyectoServices.getProyecto(this.idProyecto).subscribe((data:ProyectosList)=>{
+        this.proyecto=data;
+        this.loading=false
+      })
+    }
   }
 
   hasErrors(field: string, typeError:string){
-    return this.clienteForm.get(field)?.hasError(typeError) && this.clienteForm.get(field)?.touched;
+    return this.pagoAliadoForm.get(field)?.hasError(typeError) && this.pagoAliadoForm.get(field)?.touched;
   }
 
   enviar(event: Event){
     event.preventDefault();
     console.log('Enviado')
-    //IMPLEMENTAR LOGICA PARA GUARDAR LOS PAGOS REGISTRADOS EN EL FORMULARIO
+    if(!this.loading && this.pagoAliadoForm.valid && this.idProyecto){
+      const pagoAliado = this.pagoAliadoForm.value;
+      this._pagosAliadosServices.crearPagoAliado(this.idProyecto, pagoAliado).subscribe(
+        response => {
+          console.log('se ha registrado el pago: ', response);
+          alert('Se ha registrado el pago correctamente');
+          this._location.back();
+        }, error =>{
+          console.error('Error al registrar el cliente:', error);
+        }
+      )
+
+    }else{
+      alert('No se ha llenado el formulario correctamente');
+    }
   }
 
 }

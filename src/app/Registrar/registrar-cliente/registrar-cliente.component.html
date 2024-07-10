@@ -67,8 +67,8 @@
                 id="exampleFormControlInput5"
                  placeholder="Indique quien ha referido el cliente" 
                  formControlName="referido_por"
-                 [ngClass]="{'is-invalid': hasErrors('referidoPor','minlength')}">
-                @if(hasErrors('referidoPor','minlength')){
+                 [ngClass]="{'is-invalid': hasErrors('referido_por','minlength')}">
+                @if(hasErrors('referido_por','minlength')){
                     <span class="text-danger">El numero debe tener minimo 10 caracteres</span>
                 }
             </div>
