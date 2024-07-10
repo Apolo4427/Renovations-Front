@@ -16,8 +16,8 @@ export class ApiPagosClienteServicesService {
     return this._Http.get<ListaDePagosCliente[]>(`${this.urlBase}/proyectos/${proyectoId}/pagosClientes`);
   }
 
-  // getPagoCliente(id:number):Observable<ListaDePagosCliente>{
-  //   return this._Http.get<ListaDePagosCliente>(`${this.urlBase}/${id}`);
-  // }
+  crearPagoCliente(proyectoId:number, pagoCliente:ListaDePagosCliente):Observable<ListaDePagosCliente>{
+    return this._Http.post<ListaDePagosCliente>(`${this.urlBase}/proyectos/${proyectoId}/pagosClientes/nuevoPago`,pagoCliente);
+  }
   
 }

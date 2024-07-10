@@ -1,21 +1,23 @@
 <div class="container" style="max-width: 80%;">
     <div class="container titulo">
         <b class="fs-3 font-monospace">Registrar un nuevo pago del cliente: </b>
+        <p><b>Numero del contrato del poyecto: </b> {{proyecto?.numeroContrato}} </p>
+        <p><b>Email del cliente: </b> {{proyecto?.emailCliente}} </p>
     </div>
     <br>
-    <form [formGroup]="clienteForm" class="row g-3 needs-validation" novalidate (submit)="enviar($event)" style="width: 100%;">
+    <form [formGroup]="pagoClienteForm" class="row g-3 needs-validation" novalidate (submit)="enviar($event)" style="width: 100%;">
         <div class="col-md-4 position-relative">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Fecha de pago: </label>
                 <input type="text" class="form-control" 
                 id="exampleFormControlInput1"
                  placeholder="Fecha de pago del cliente" 
-                 formControlName="fechaDePago"
-                 [ngClass]="{'is-invalid': hasErrors('fechaDePago','required') || hasErrors('fechaDePago','minlength')}">
-                @if(hasErrors('fechaDePago','required')){
+                 formControlName="fecha_pago"
+                 [ngClass]="{'is-invalid': hasErrors('fecha_pago','required') || hasErrors('fecha_pago','minlength')}">
+                @if(hasErrors('fecha_pago','required')){
                     <span class="text-danger">tines que rellenar este campo</span>
                 }
-                @if(hasErrors('fechaDePago','minlength')){
+                @if(hasErrors('fecha_pago','minlength')){
                     <span class="text-danger">La fecha debe tener minimo 3 caracteres</span>
                 }                 
             </div>
@@ -24,12 +26,12 @@
                 <input type="text" class="form-control" 
                 id="exampleFormControlInput2"
                  placeholder="Metodo de pago que a usado el cliente" 
-                 formControlName="metodoPago"
-                 [ngClass]="{'is-invalid': hasErrors('metodoPago','required') || hasErrors('metodoPago','minlength')}"/>
-                 @if(hasErrors('metodoPago','required')){
+                 formControlName="metodo_pago"
+                 [ngClass]="{'is-invalid': hasErrors('metodo_pago','required') || hasErrors('metodo_pago','minlength')}"/>
+                 @if(hasErrors('metodo_pago','required')){
                     <span class="text-danger">tines que rellenar este campo</span>
                  }
-                 @if(hasErrors('metodoPago','minlength')){
+                 @if(hasErrors('metodo_pago','minlength')){
                     <span class="text-danger">El metodo de pago de tener minimo 3 caracteres</span>
                  }
             </div>
@@ -38,16 +40,16 @@
                 <input type="text" class="form-control" 
                 id="exampleFormControlInput3"
                  placeholder="Valor del pago" 
-                 formControlName="valorPagado"
-                 [ngClass]="{'is-invalid': hasErrors('valorPagado','required') || hasErrors('valorPagado','minlength')}">
-                 @if(hasErrors('valorPagado','required')){
+                 formControlName="valor_pagado"
+                 [ngClass]="{'is-invalid': hasErrors('valor_pagado','required') || hasErrors('valor_pagado','minlength')}">
+                 @if(hasErrors('valor_pagado','required')){
                      <span class="text-danger">tines que rellenar este campo</span>
                  }
-                 @if(hasErrors('valorPagado','minlength')){
+                 @if(hasErrors('valor_pagado','minlength')){
                      <span class="text-danger">El valor debe tener minimo 2 caracteres</span>
                  }
             </div>
         <div class="col-12" style="margin: 20px 0px;">
-          <button class="btn btn-success" type="submit">Registrar</button>
+          <button class="btn btn-success" type="submit" [disabled]="loading">Registrar</button>
         </div>
 </div>
