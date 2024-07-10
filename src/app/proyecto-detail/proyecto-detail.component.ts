@@ -21,10 +21,13 @@ export class ProyectoDetailComponent implements OnInit {
   private _router = inject(Router);
   //private _clientePrueba = inject(ClienteService);
 
-  public proyecto?:ProyectosList;
-  public pagosCleinte?:ListaDePagosCliente[];
-  public pagosAliados?:ListaDePagosAliado[];
+  proyecto?:ProyectosList;
+  pagosCleinte?:ListaDePagosCliente[];
+  pagosAliados?:ListaDePagosAliado[];
   loading:boolean = true
+  valorApovado?:number;
+  sumaPagos:number = 0;
+  // faltaPagar?:number;
 
   ngOnInit(): void {
       this._activatedRouter.params.subscribe(params=>{
@@ -35,6 +38,13 @@ export class ProyectoDetailComponent implements OnInit {
         this._servicePagosClientes.getPagosCliente(params['proyectoId']).subscribe((data:ListaDePagosCliente[])=>this.pagosCleinte=data);
         this._sevicePagosAliados.getPagosAliados(params['proyectoId']).subscribe((data:ListaDePagosAliado[])=>this.pagosAliados=data);
       })
+      if(this.proyecto?.valor_aprovado && this.pagosCleinte){
+        this.valorApovado = Number(this.proyecto.valor_aprovado);
+        for(let i=0; i<=this.pagosCleinte.length; i++){//corregir error
+          this.sumaPagos += Number(this.pagosCleinte[i].valor_pagado);
+        }
+        // this.faltaPagar = this.valorApovado-this.sumaPagos;
+      }
     // this.loading = false
     // this.proyecto = this._clientePrueba.getProyecto().find((item:ProyectosList)=> item.proyectoId);
   }

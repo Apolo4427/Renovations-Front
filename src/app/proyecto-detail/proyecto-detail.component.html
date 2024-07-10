@@ -120,6 +120,10 @@
             }
         </tbody>
     </table>
+    @if(!loading){
+        <p> <b>Total pagado: </b> {{sumaPagos}} </p>
+    }
+    <!-- <p> <b>Falta por pagar: </b> {{faltaPagar?}} </p> -->
 </div>
 <div class="container">
     <p class="fs-3">Pagos a compañias aliadas: </p>

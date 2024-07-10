@@ -22,6 +22,7 @@ export class RegistrarProyectoComponent implements OnInit{
   loading:boolean=true;
   numeroExistente:boolean = false;
   proyectosCliente:ProyectosList[]=[];
+  valorAprovado?:string;
 
   private _clienteServices = inject(ApiServiceClientesService);
   private _proyectosServices = inject(ApisProyectosServicesService);
@@ -69,24 +70,28 @@ export class RegistrarProyectoComponent implements OnInit{
       }if(this.proyectoForm.valid && !this.numeroExistente && this.clienteId){
         this.proyectoForm.get('emailCliente')?.setValue(this.clienteEmail);
         const {clienteIdform, ...nuevoProyecto} = this.proyectoForm.value;
-        this._proyectosServices.crearProyecto(this.clienteId, nuevoProyecto).subscribe(
-          response => {
-            console.log('Proyecto registrado:', response);
-            alert('El proyecto se ha registrado correctamente.');
-            this._router.navigate(['cliente', this.clienteId]);
-          },error => {
-            console.error('Error al registrar el proyecto:', error);
-            if (error.status === 400) {
-              alert('Ese número de contrato ya existe.');
-            } else {
-              alert('Hubo un error al registrar el proyecto.');
+        this.valorAprovado = this.proyectoForm.get('valor_aprovado')?.value;
+        if(Number(this.valorAprovado)){
+          this._proyectosServices.crearProyecto(this.clienteId, nuevoProyecto).subscribe(
+            response => {
+              console.log('Proyecto registrado:', response);
+              alert('El proyecto se ha registrado correctamente.');
+              this._router.navigate(['cliente', this.clienteId]);
+            },error => {
+              console.error('Error al registrar el proyecto:', error);
+              if (error.status === 400) {
+                alert('Ese número de contrato ya existe.');
+              } else {
+                alert('Hubo un error al registrar el proyecto.');
+              }
             }
-          }
-        );
+          );
+        }else{
+          alert('El valor aprovado debe ser un numero entero');
+        }
       }else {
         console.log('Formulario no válido o clienteId undefined');
       }
     }
-    
   }
 }

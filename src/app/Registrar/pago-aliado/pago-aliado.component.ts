@@ -18,6 +18,7 @@ export class PagoAliadoComponent implements OnInit {
   proyecto?:ProyectosList;
   pagoAliadoForm!: FormGroup;//"!" significa que nos comprometemos a que nunca sea null
   loading:boolean=true;
+  valorPagadoACompañia?:string;
 
   private _proyectoServices = inject(ApisProyectosServicesService);
   private _pagosAliadosServices = inject(ApiPagosAliadosService);
@@ -50,16 +51,20 @@ export class PagoAliadoComponent implements OnInit {
     console.log('Enviado')
     if(!this.loading && this.pagoAliadoForm.valid && this.idProyecto){
       const pagoAliado = this.pagoAliadoForm.value;
-      this._pagosAliadosServices.crearPagoAliado(this.idProyecto, pagoAliado).subscribe(
-        response => {
-          console.log('se ha registrado el pago: ', response);
-          alert('Se ha registrado el pago correctamente');
-          this._location.back();
-        }, error =>{
-          console.error('Error al registrar el cliente:', error);
-        }
-      )
-
+      this.valorPagadoACompañia = this.pagoAliadoForm.get('valorPagado')?.value;
+      if(Number(this.valorPagadoACompañia)){
+        this._pagosAliadosServices.crearPagoAliado(this.idProyecto, pagoAliado).subscribe(
+          response => {
+            console.log('se ha registrado el pago: ', response);
+            alert('Se ha registrado el pago correctamente');
+            this._location.back();
+          }, error =>{
+            console.error('Error al registrar el cliente:', error);
+          }
+        )
+      }else{
+        alert('El valor pagado debe ser un numero entero');
+      }
     }else{
       alert('No se ha llenado el formulario correctamente');
     }

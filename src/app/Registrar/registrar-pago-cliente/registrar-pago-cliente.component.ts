@@ -18,6 +18,7 @@ export class RegistrarPagoClienteComponent implements OnInit{
   pagoClienteForm!: FormGroup;//"!" significa que nos comprometemos a que nunca sea null
   proyecto?:ProyectosList;
   loading:boolean = true;
+  valorPagado?:string;
 
   private _proyectoServices = inject(ApisProyectosServicesService);
   private _pagosDeClienteServices = inject(ApiPagosClienteServicesService);
@@ -50,15 +51,20 @@ export class RegistrarPagoClienteComponent implements OnInit{
     console.log('Enviado')
     if(!this.loading && this.pagoClienteForm.valid && this.idProyecto){
       const pagoCliente = this.pagoClienteForm.value;
-      this._pagosDeClienteServices.crearPagoCliente(this.idProyecto,pagoCliente).subscribe(
-        response => {
-          console.log('Se ha registrado el pago del cliente: ',response);
-          alert('Se ha registrado el pago del cliente correctamente');
-          this._location.back();
-        }, error => {
-          console.error('Error al registrar el cliente:', error);
-        }
-      )
+      this.valorPagado = this.pagoClienteForm.get('valor_pagado')?.value
+      if(Number(this.valorPagado)){
+        this._pagosDeClienteServices.crearPagoCliente(this.idProyecto,pagoCliente).subscribe(
+          response => {
+            console.log('Se ha registrado el pago del cliente: ',response);
+            alert('Se ha registrado el pago del cliente correctamente');
+            this._location.back();
+          }, error => {
+            console.error('Error al registrar el cliente:', error);
+          }
+        )  
+      }else{
+        alert('El valor pagado debe ser un numero entero');
+      } 
     }else {
       alert('No se ha llenado el formulario correctamente.');
     }
